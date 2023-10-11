@@ -1,0 +1,242 @@
+{
+  "Editorial Journalist": {
+    "Strands": "Editor,Journalist,Reporter,Editorial Journalist,Broadcast Journalist,Editorial Assistant",
+    "Bio": "You'll not only be an elegant writer but someone who can sniff out a story, build relationships and extract information. Whether it's finding an exclusive scoop that shocks the public or deep-diving into a topic, you'll be equally as confident with people as you are with prose.",
+    "Toolkit": "Wordpress,Mailchimp,Substack,Revue,Twitter,Grammarly,BuzzSumo,Maestra,Authory,CreaWriter,Currents,IntelTechniques,CrowdTangle,Toby",
+    "Skills": "NCTJ,Shorthand,Pitching,SEO,CMS,Networking,Editing,Persistence,Resourcefullness,Copywriting,Curation,Negotiation"
+  },
+  "Broadcast Journalist": {
+    "Strands": "Journalist,Reporter,Assistant producer,Assistant researcher,Presenter",
+    "Bio": "A lot goes into making an entertaining and informative news programme. You might be researching hard-hitting stories, producing, or presenting. You'll need to be rigorous and a clear communicator. With little margin for error, delivery is everything in a high-octane newsroom.",
+    "Toolkit": "TikTok,Twitter Spaces,Happs,Camyak,PubPub,SoundSlides,Audible,Adobe Premiere Pro,InShot,Youtube",
+    "Skills": "Interviewing,Presenting,Scoop Finding,Articulate,Forensic,NCTJ,Sentiment Monitoring,Podcasting,BJTC"
+  },
+  "Public Relations": {
+    "Strands": "PR,Comms,Account Executive,Crisis Communications,Press Officer",
+    "Bio": "Part of the way businesses are percieved continues to be through the press. You'll become the steward of a brand's reputation, averting crises and building relationships with journalists to secure positive coverage. You'll be a clear writer with keen eye on the news cycle, able to take rejection in the pursuit of positive coverage.",
+    "Toolkit": "Cision,Newswire,Mention,Twitter,Vuelio,PR Max,Prowly,Prezly,MuckRack,Colibri",
+    "Skills": "Pitching,Media Monitoring,CRM,Networking,Press Release,Copywriting,Persuasiveness,Persistence,Thought Leadership,Social Media Management"
+  },
+  "Copywriter": {
+    "Strands": "Copywriter,Content Manager,Content Marketing,UX Copywriter,Creative Copywriter,Content Writer,Screenwriter,Technical Writer",
+    "Bio": "Writing is key to the success of any business. Communicating with an audience through blogs, reports, product descriptions helps to drive leads and brand awareness. You'll be able to maintain a consistent tone of voice across all channels, being equally as comfortable writing a short tweet as a long-form blog.",
+    "Toolkit": "Webflow,Wordpress,Google docs,Hootsuite,Semrush,Grammarly,Mailchimp,Copyshark,BuzzSumo,UberSuggest,Figma,Google Analytics,Revue,CreaWriter,Simplified,Jasper,Anyword,Copy.AI,Ahrefs,Googlesearchconsole,KWfinder,Answerthepublic,SPYFU",
+    "Skills": "SEO,Copywriting,Wit,Editing,Design,Freelancer Management,Data Analysis,Formatting,Social Media Management,Tone of Voice,Creativity,Persistence"
+  },
+  "Conference Producer": {
+    "Strands": "Conference Producer,Event Marketing,Event Manager",
+    "Bio": "The events industry had to adapt during covid-19. Conferences became webinars with virtual attendees, speakers and producers using software such as Hopin and Zoom. Now that physical events are back, you're organisational skills will be tested to limit to make the conference flow smoothly. You'll need to be able to delve into complex topics and persuade experts to speak at your event, virtual or physical.",
+    "Toolkit": "Hopin,Zoom,LinkedIn,Figma,Asana,Mailchimp,Hubspot,Excel,Airtable,Loom,Cvent,Social Tables,RegPack,EventBrite,Event Mobi,Hub,DoubleDutch,Monday,Attendify,Allcal,Topi",
+    "Skills": "Event Management,Copywriting,Research,CRM,Organisation,Public Speaking,Interviewing,Persuasiveness"
+  },
+  "Digital Marketing": {
+    "Strands": "Digital Marketing,Growth Marketing,Growth Hacker,Conversion Rate Optimisation Analyst",
+    "Bio": "As a marketing generalist, you'll have you'll be responsible for a wide range of tasks. It might be E-mail campaigns one day, or pay-per-click advertising copywriting the next. You'll need the numeric skills to track performance metrics, and the writing skills to write great short-form messaging.",
+    "Toolkit": "Hubspot,Mailchimp,Figma,Google Analytics,Hootsuite,Facebook ads,Linkedin ads,TikTok ads,Semrush,WASK,Zapier,Turtl,Expandi,GrowthBar,Landbot,Hotjar,Optimizely,LeadFeeder,Ghostery,Data Miner",
+    "Skills": "SEO,PPC,CRM,Copywriting,Social Media Management,Scraping,Creativity,Design,Versatile,Sales Enablement,Data Analysis,Metric Tracking"
+  },
+  "Public Affairs": {
+    "Strands": "Public Affairs,Policy,Public Policy,Campaigns Officer",
+    "Bio": "You'll be working at the intersection of business and politics. You could be researching public policy implications for an NGO, or lobbying MPs to hold back on a new piece of legislation. Expect to sink your teeth into complex reports and maintain a watchful eye over the policy landscaoe.",
+    "Toolkit": "Hopin,Mention,Excel,Airtable,Quorum,Phone2Action,NationBuilder,Salsa CRM,CQ Enagage,Bloomberg Government,Muster,The Action Network,Colibri",
+    "Skills": "Stakeholder Management,Political Monitoring,Legislation Tracking,Research,Advocacy,Persuasiveness,Event Management,Persistence,Networking,Report Writing,Lobbying"
+  },
+  "Product Marketing": {
+    "Strands": "Product Marketing,Market Research",
+    "Bio": "Once the tech team have built a product that is just about ready, the product marketer must bring that product to market. You'll be doing competitior analysis, market research and recording initial customer feedback in order to build a strategy for communicating the value proposition to the correct audience. You'll be communicating with the product team to give feedback on any features, while working with the founders to execute your strategy.",
+    "Toolkit": "Product Marketing Alliance,Hotjar,Typeform,Trello,Airtable,Mockflow,Drift,Google Analytics,Zapier,Involve.me,Monday,OmniSend,Amplitude,Crayon,Hubspot,ProductBoard,Helpwise",
+    "Skills": "Sales Enablement,Go-To-Market,Product Marketing Core,User Research,Competitor Analysis,Copywriting,Lateral Thinking,Data Analysis,Feedback,Pricing,Strategic,Referrals,Versatility"
+  },
+  "Sales Development Representative": {
+    "Strands": "Business Development Executive,Sales,SaaS sales,SDR",
+    "Bio": "If you love chasing leads and closing deals, sales is the career for you. You'll have the gift of the gab and the hustle to face a fair bit of rejection along the way. Targeted outbound campaigns with cold-calls and cold-emails will be the key to achieving results. You'll need to be able to articulate the value of whatever you're selling with a smooth spoken manner.",
+    "Toolkit": "Salesforce,Pipedrive,LinkedIn,Hubspot,Intercom,OneShot,Fresh Sales,Zendesk,Aircall,Hunter,RocketReach,Snov,VidYard,ChilliPiper,Krisp,Calendly,Atrium,Bloobirds",
+    "Skills": "Persistence,Stoicism,Cold-calls,Cold Emails,Copywriting,CRM,Conversion Rate,Persuasiveness"
+  },
+  "Account Executive": {
+    "Strands": "Account Executive,Inbound Sales",
+    "Bio": "As an AE, you don't come to the leads - the leads come to you. It's your job to convert those warm leads into deals. The role might be through taking the prospective client through a demo or explaining the advantages of your product against a competitors'. This role is all about assuring the client that any doubts they have are misplaced and getting deals over the line. You get all the perks and incentives of sales without the outreach.",
+    "Toolkit": "Salesforce,Pipedrive,Hubspot,Intercom,Zendesk,Loom,Insightly,Zoho CRM,Qwilr,Proposify,DocuSign,Accelo,Calendly",
+    "Skills": "Persuasive,CRM,Proposals,Product Demonstration,Pipeline Management,Negotiation"
+  },
+  "Customer Success": {
+    "Strands": "Customer Success,Client Services,Customer Onboarding",
+    "Bio": "As soon as a customer decides to buy your product, you'll be tasked with ensuring they have a positive user experience. You'll have to respond to any queries while co-ordinating with sales and product on the common issues faced by customers. You'll constantly be documenting the speed and structure of the process in order to optimise the service provided. You may have to take a bit of stick from customers, but you'll be appreciated by returning clients when the service runs smoothly.",
+    "Toolkit": "Notion,Asana,Trello,Salesforce,Hubspot,ChurnZero,Intercom,Gainsight,Rocket Lane,TeamSuccess,FreshSuccess,Zendesk",
+    "Skills": "Dilligence,Stoicism,Organisation,Customer Service,Documentation,Speed,Patience,Listening,CRM,CSM Competency,Customer Satisfaction,Customer Onboarding"
+  },
+  "Partnerships Executive": {
+    "Strands": "Affiliate Marketing,Partnerships Executive,Influencer Marketing,Performance Marketing",
+    "Bio": "Sometimes businesses seek to partner with other firms or individuals where it is mutually beneficial to do so. There are three ways of doing so. Partnerships executives will find other businesses looking to sign exclusivity deals or offer to both promote each other's services. Affiliate Marketers will find influencers and websites who will promote products for a commission fee on any sales. You'll need to search out these opportunities and be able to explain how the two brands in question align.",
+    "Toolkit": "LinkedIn,Hubspot,Everflow,Affise,ClickBank,Impact.com,TUNE,Referrizer,Reveal,Impartner,PartnerStack,Allbound,Magentrix,Shareasale,Crossbeam",
+    "Skills": "Negotiation,Affilate Programme,Influencer Scouting,Strategic Partnerships,Persuasiveness"
+  },
+  "Community Manager": {
+    "Strands": "Community Manager,Community Builder,Paid Social",
+    "Bio": "Brands are now seeking turn to groups of customers into buzzing digital and physical communities. You'll be tasked with curating and building vibrant chatrooms on Slack, GitHub, Discord and Telegram to name a few. As an ambassador of your company, you'll need to unite members around their usage of your product, filtering out spam contributors, inviting relevant members and providing interesting content. This could even take the form of physical events, webinars, games, quizzes and memes.",
+    "Toolkit": "Slack,Discord,Telegram,Facebook Groups,Signal,Twitter,Hopin,Tribe,Hootsuite,Meetup,Sprout Social,SurveyMonkey,Typeform,Involve.me,Common Room,Mailchimp",
+    "Skills": "Copywriting,Curation,Creativity,Forum Management,Memes,Event Management,Conscienciousness,Social Media Management,Leadership"
+  },
+  "Videographer": {
+    "Strands": "Videographer,Video Production Assistant,Video editor,Audio Producer",
+    "Bio": "With an overload of written content competing for attention, businesses need engaging visuals. You'll be a wizard with Adobe Premier Pro, understanding all the nuances of transitions, effects and audio editing. You'll be able to give creative direction while ensuring the finished product is polished. Although some firms have a video team in house, you're likely to be more prolific working freelance or at an agency.",
+    "Toolkit": "Adobe Premiere Pro,SnagIt,CloudApp,Camtasia,Ableton Live,InShot,TikTok,Canon EOS Rebel T7I,Sony FDR AX100,Panasonic Lumix GH5",
+    "Skills": "Editing,Creativity,Audio Mixing,Production,Effects,Filters,Design"
+  },
+  "UX Designer": {
+    "Strands": "UX Designer,Product Designer,UI Designer,Graphic Designer",
+    "Bio": "Where art meets technology. You'll be able to design beautiful interfaces for websites and apps. You'll have an eye for detail, knowing when and where to place every banner and widget. As a master of app design, you'll be the key to making a stunning, easy-to-use product. You can cook up designs and wireframes from Figma, Adobe & Sketch with ease, collaborating with the front-end developers to bring them to life.",
+    "Toolkit": "Figma,Adobe XD,Sketch,Webflow,InVision,Axure,Marvel,FlowMapp,Dribbble,Bravo,Lasca,Build My Persona",
+    "Skills": "Coding,UX Research,Prototyping,Wireframing,Creativity,User Flow,Mockup,Presentation,User Research,Design"
+  },
+  "Software Developer": {
+    "Strands": "Front-end Developer,Back-end Developer,Full-stack Developer,DevOps Engineer,Security Developer,Cloud Architect",
+    "Bio": "If coding is your thing and you love to build, design and maintain software then this the career for you. You'll be a logical thinke, able to spot errors with a fluency in one or many coding languages. You must be able to apply these languages into tangible solutions to real world problems, keeping the user in mind.",
+    "Toolkit": "Javascript,Python,Go,Java,Kotlin,PHP,C#,Swift,R,Ruby,C & C++,GitHub,Firebase,Outsystems,Rust,MatLab,TypeScript,Go ,Kotlin",
+    "Skills": "Flutter,Native,React,DevOps,Coding,Meticulous,Methodical,Troubleshooting,Lateral Thinking,Machine Learning,IDE,Database Management,SDLC,Testing,Design,Maintenance"
+  },
+  "Quality Assurance": {
+    "Strands": "QA Tester,QA Engineer,QA Analyst,Testing Engineer,Test Architect",
+    "Bio": "You'll be the key to ensuring the product works as is it should do. As someone who is methodical, you will create a controlled testing environment, running tests and communicating your findings back to the developers. Documenting everything along the way will help you optimise the process and the product.",
+    "Toolkit": "TestLodge,Zephyr,TestLink,Jira,Sauce Labs,Browser Shots,Postman,QAComplete,Kobiton,Testim,Autify,Appsurify,QA Wolf,Zebrunner,Avoassure,Applitools",
+    "Skills": "Meticulous,QA Skills License,Test Planning,Methodical,Troubleshooting,Logical,Manual Testing,Automated Testing"
+  },
+  "Business Analyst": {
+    "Strands": "Business Analyst,Management Consultant,Commercial Analyst,Solutions Analyst,Sustainability Consultant,Subject Matter Expert",
+    "Bio": "You'll be a problem-solver who acts as the bridge between the stakeholders and the rest of the team working on the project. Focusing on optimising processes using data, you'll seek to improve the efficiency of your organisation in every project you work on",
+    "Toolkit": "Jira,Confluence,Python,SQL,BPMN 2.0,Six Sigma,Trello,Asana,Irise,VersionOne,R,Bitmpulse,Heptalysis,Balsamiq,Plutora",
+    "Skills": "Agile,Scrum,Kanban,User Story,Stakeholder Management,SWAT,Modelling,ERP,Requirements Analysis,ETL,ELT,Financial Analysis,Data Visualisation,Data Analysis,Leadership,Documentation,Risk Assesment,Problem Solving,BCS,Functional Specification"
+  },
+  "Project Manager": {
+    "Strands": "Project Manager,Agile PM,Delivery Lead,Scrum Master",
+    "Bio": "You'll be a born leader and an agent of change in any organisation you work in. You know how to manage people, understanding the end-user and how to inspire your team to constantly improve. For this, you'll need to be familiar with the Agile methodology, which emphasises reacting to change rather than following a fixed plan. Working in 'sprints' you'll be motivator / organiser-in-chief.",
+    "Toolkit": "Asana,Jira,Confluence,Trello,Monday,Outsystems,MeisterTask,Basecamp,Nifty,Proofhub,Wrike,ClickUp,ProductBoard",
+    "Skills": "Scrum,AgilePM,ICAgile,XP,APF,Leadership,Lean,Time Management,Stakeholder Management,Organisation,Persuasive,Kanban,Backlog,Risk Assesment,Gantt,Epics,User Story,Agile,Sprints"
+  },
+  "Product": {
+    "Strands": "Product Owner,Product Manager",
+    "Bio": "You will literally 'own' the product. That means managing the development process, articulating a vision and strategy. You'll orchestrate the product roadmap and manage 'backlog' which means things like feature development. You might work in a 'scrum' formation, with a scrum master dictating. Or you might have a product manager managing a team of product owners and developers.",
+    "Toolkit": "Productplan,Pendo,Amplitude,Typeform,Jira,Asana,Trello,Javascript,Split,LaunchDarkly,Nifty,JavaScript ,Python,ProductBoard",
+    "Skills": "Agile,Scrum,Foresight,Market Research,Leadership,Vision,Backlog,Lateral Thinking,Wireframe,Creativity,PRINCE2,AIPMM,ISPMA,PDMA,Gantt,Epics,User Story,Sprints"
+  },
+  "Operations": {
+    "Strands": "Operations,Logistics,Supply-Chain Analyst",
+    "Bio": "As the organiser-in-chief, you will take command of the day-to-day logistics of running a business. You'll be managing employees and partners to make sure everything runs smoothly. In a warehouse environment this role might take a different form, ensuring all deliveries are fullfilled and workers are happy. In a less industrial setting, you might take charge of company events and manage payments and contracts with agencies and suppliers.",
+    "Toolkit": "Asana,Workiz,Juro,DocuSign,Airtable,Notion,Monday,Trello,Excel",
+    "Skills": "Supply-Chain Management,Stakeholder Management,Organisation,Leadership,OKR,KPI,Time Management,Motivational,Persistence"
+  },
+  "Sell-Side Financial Analyst": {
+    "Strands": "Investment Banker,M&A Analyst,Markets Analyst,Equity Analyst,Debt Analyst,Risk Analyst,ESG Analyst,Investor Relations",
+    "Bio": "Sleep is for the weak in investment banking. You'll be fascinated by financial markets and be a expert modeller and researcher. Depending on where you are stationed, you'll be wining and dining clients on the buy-side, to keep them using your services. Or you might be in the back office producing a detailed report. Pour yourself a coffee and grind it out until bonus day arrives.",
+    "Toolkit": "Excel,Airtable,PowerPoint,Bloomberg Terminal,Salesforce,Dealroom,BrainCeek,Tableau,Refinitiv,Moody's,S&P,Sustainalytics,Financial Times,Brighterbox,Fitch",
+    "Skills": "Modelling,Report Writing,Financial Analysis,Sales,Networking,Dedication,Negotiation,CFA,IFA,Data Visualisation,ESG,Persuasiveness"
+  },
+  "Buy-Side Financial Analyst": {
+    "Strands": "Asset Manager,Quant,Hedge Fund Analyst,Private Equity Analyst,Insurance Investment Analyst,ESG Analyst,Investor Relations",
+    "Bio": "You'll be investing the money of regular folks (pensions and insurance) and high-net-worth individuals. Initially, you'll be doing research into crafting a balanced portfolio that can deliver high returns, minimising risk. At a hedge fund, you'll be likely building an algorithm to do the trading for you. In private equity, you'll be looking for asset-rich private companies that are ripe for restructuring, to then sell on for a profit. Expect long hours and big bonuses.",
+    "Toolkit": "Excel,Python,SQL,PowerPoint,Bloomberg Terminal,Airtable,Tableau,Refinitiv,Moody's,S&P,Tellimer,Financial Times,Pitchbook,IHS Markit,Fitch,Prequin,Capitalise.AI",
+    "Skills": "Financial Analysis,Machine Learning,OSINT,Modelling,Alertness,CFA,IFA,Foresight,Dedication,Data Analysis,Coding"
+  },
+  "Venture Capitalist": {
+    "Strands": "VC,Angel Investor",
+    "Bio": "As a VC, you'll spend your days listening to founders pitch their startups, glossing over pitch decks and crunching the numbers. You'll need to understand the technology landscape and have the network to find good deals. The role has changed over the last few years with lots of funds fighting for allocation in 'hot' companies, so you'll need a genuine understanding of the challenges faced by startups to convince them to bring you on board.",
+    "Toolkit": "Airtable,Excel,Angellist,Vauban,Odin,Pitchbook,Crunchbase,Dealroom,Prequin,CB Insights,Sifted,App Annie,Carta,OpenVC,Twitter",
+    "Skills": "Networking,Unit Economics,Negotiation,CAC,LTV,ROI,TVPI,Financial Analysis,Term Sheet,Foresight"
+  },
+  "Data Scientist": {
+    "Strands": "Data Scientist,Quant",
+    "Bio": "You'll be tasked with mining, preparing and cleaning data using the latest techniques in machine learning and AI. Your work will be key to enabling business decisions. It could be writing machine learning models or statistical and predictive analysis - most companies define the role differently, so you'll need a deep quantitative toolkit to land this prestigious role.",
+    "Toolkit": "SQL,Python,Pandas,NumPy,scikit-learn,Keras,Tensorflow,SAS,DataBricks,Cassandra,GitHub,Spark,Hadoop,R",
+    "Skills": "Neural Networks,Machine Learning,NLP,Decision Trees,Clustering,Logistic Regression,Linear Regression,Scraping,Data Cleaning,Persistent,Perfectionism"
+  },
+  "Data Analyst": {
+    "Strands": "Data Analyst,Data Journalist,Business Intelligence Analyst",
+    "Bio": "If Data science is the cleaning and engineering of data, Data analytics is focused on drawing actionable insights from the trends uncovered. You'll be using data visualisation tools to tell a story to decision-makers. You'll be able to apply predictive analytics and react to new data to influence business strategy.",
+    "Toolkit": "SQL,Tableau,Excel,Airtable,Sisense,Stitch,Google Data Studio,Qilk,Redash,Jupyter Notebook,Chartio,R,Power BI,Python,Looker",
+    "Skills": "Data Analysis,Data Visualisation,Lateral Thinking,Report Writing,Extrapolation,Persuasive"
+  },
+  "Underwriter": {
+    "Strands": "Mortgage Underwriter,Insurance Underwriter,Securities Underwriter,Loan Underwriter,Reinsurance Underwriter",
+    "Bio": "When someone wants to take out an insurance policy, loan or mortgage, you'll be the one who evaluates the risk involved. In Insurance, you'll analyse factors that might make the firm liable for a payout such as health, driving history etc. For Mortgages and loans, you would likely use credit scores and debt-to-income ratios. A securities underwriter looks at the risk of a company listing on the stock market, buying and selling the shares. You'll be great with numbers and a persuasive salesperson dealing with agents, executives and consumers.",
+    "Toolkit": "Excel,SQL,Applied Epic,Quote Rush,Opus,Airtable,Mendix,Gratex,AdvantageGo,Artificial,PrimaryBid,CreditKudos,Nova Credit,Juvo",
+    "Skills": "Risk Assesment,Negotiation,Modelling,Four-eyes Principle,Treat Customers Fairly Policy,Persistent,Persuasiveness"
+  },
+  "Actuary": {
+    "Strands": "Actuary,Actuarial Asssistant,Pricing Analyst",
+    "Bio": "You'll be a master of predicting the future. Modelling for risk and probability, you'll be adept with statistics, able to explain complex mathematical concepts to non-technical stakeholders. In Insurance, you will likely to be working on pricing, using data to determine risk. You could also be working on pension plans and financial reporting with this prestigious qualification.",
+    "Toolkit": "VBA,R,Python,SQL,Risk Agility FM,Igloo,Akur8,Javascript,SAS",
+    "Skills": "IFoA,CAA,Risk Transfer,GMP Equalisation,ORSA,Solvency II,Validation,Stress Testing,Reverse Stress Testing,Bayesian,Statistical Analysis"
+  },
+  "Broker": {
+    "Strands": "Real Estate Broker,Insurance Broker,Commodities Broker,Prime Broker,Broker-Dealer,Stock Broker,Forex Broker",
+    "Bio": "In this non-stop role, you'll be the bridge between buyers and sellers. In insurance, a broker represents the customer, seeking to find the best deals. A stock or commodities broker may represent buyers and sellers, but not at the same time. The aim is to maximise the volume of trades that go through the platform with the largest 'spread' between the buy and sell price. A prime broker in an investment bank lends money to hedge funds. You'll be outgoing, willing to work late, and willing to wine and dine the clients.",
+    "Toolkit": "Bloomberg Terminal,Excel,Airtable,Tableau,SQL,Tellimer,IHS Markit,BetterTrader,TradingView,Capitalise.AI",
+    "Skills": "CFA,Sales,Data Analysis,Negotiation,Persistence,Lloyds of London,Persuasiveness,CII"
+  },
+  "Agent": {
+    "Strands": "Estate Agent,Football Agent,Insurance Agent,Music Agent,Talent Management,Shipping Agent",
+    "Bio": "As a representative of your client, you'll do your utmost to secure the best opportunities for them in whatever domain it may be. Estate and insurance agents represent the landlord and Insurer respectively. Football, music and talent (influencer) agents represent individuals. You'll be a shrewd negotiator and strategic networker, able to establish a strong reputation and personal connections.",
+    "Toolkit": "Excel,Airtable,BestAgent,Salesforce,AgentPro,DezRez,Jupix,RightMove,Zoopla,OpenRent",
+    "Skills": "CII,RICS,APC,Property Management,Negotiation,Sales,Lloyds of London,CRM,Portfolio Display"
+  },
+  "Compliance": {
+    "Strands": "Compliance,AML Analyst,KYC Analyst,Risk Analyst,MLRO",
+    "Bio": "As financial institutions and fintech startups have to balance revenue with complying with regulations, the compliance department is a conduit to that. You'll be a thorough researcher who can dig into global and national regulations and client history. Anti-money-laundering and know-your-customer are key areas as you find out your client's source of wealth and funds. You'll have a keen interest in the latest political sanctions and global events.",
+    "Toolkit": "Comply Advantage,Companies House,Templafy,Hyperproof,Asana,Airtable,Napier,Trulioo,Coinfirm",
+    "Skills": "GRC,AML,KYC,Due Dilligence,Sanctions,FCPA,Source of Wealth,Source of Funds,ICA"
+  },
+  "Paralegal": {
+    "Strands": "Paralegal,Article Clerk",
+    "Bio": "A paralegal undertakes the work that makes a law firm tick, without being a qualified lawyer. You'll be highly organised and process-driven, with a desire to learn more about the legal sector and business administration. You might be doing legal research, client handling or document management. This role is a great way to springboard into a more senior legal job, providing you have the qualifications.",
+    "Toolkit": "Excel,Airtable,LexisNexis,WestLaw,DocuSign,Clio,Moxtra,Adobe Acrobat,Bill4Time,JurisDoc",
+    "Skills": "LPC,GDL,BPTC,Organisation,Negotiation,Research,Due Dilligence,Document Drafting"
+  },
+  "Trainee Lawyer": {
+    "Strands": "Trainee Barrister,Trainee Solicitor",
+    "Bio": "So you've passed your law degree or conversion and secured a training contract. You'll either be a barrister able to think on your feet, building and demonstrating a comprehensive case for your client. You'll be considered an expert in your area of the law. A solicitor might take a more client-facing role and administrative role while also offering legal opinion You'll love the challenge of decoding complex jargon and taking on the bespoke challenge of each clients' case.",
+    "Toolkit": "LexisNexis,WestLaw,DocuSign,Clio,Moxtra,Adobe Acrobat,Bill4Time,JurisDoc,App4Legal,Baillii",
+    "Skills": "LPC,GDL,Negotiation,Writing,Due Dilligence,Public Speaking,Persuasive,LLB,SQE"
+  },
+  "Audit": {
+    "Strands": "Internal Auditer,External Auditer,Auditer",
+    "Bio": "You'll be forensically examining the financials of a company. Digging through cash flow statements and balance sheets to ensure the absence of fraud. The failed audits of the likes of Carillion and Wirecard have shone a light on what the new generation can fix in the profession. And with ESG reporting coming into the spotlight, carbon accounting has created a whole new set roles. You'll have laser-focused attention to detail and be great with numbers. You'll allocate your time to learning the trade and studying for your accounting exams.",
+    "Toolkit": "Excel,Airtable,Benchmark ESG,Pentana Audit,Intelex,Emex,AuditBond,Quantivate",
+    "Skills": "ACCA,AIA,CIPFA,Financial Analysis,Risk Assesment,Quality Assurance,Report Writing,ACA,IIA"
+  },
+  "Accountant": {
+    "Strands": "Accountant,Financial Controller,Tax Advisor,Insolvency Practitioner",
+    "Bio": "Rather than just crunching the numbers, you will be undertaking a wide range of activities. You could be preparing financial reports and statements, or advising on taxation issues. You could be advising on debt or modelling cash flow forecasts. You'll be organised, numerate and able to communicate clearly with clients on a daily basis. Be prepared to balance delivering for clients and working towards your qualification. Once you get there, the possibilities are endless.",
+    "Toolkit": "Excel,Airtable,Xero,Penny Lane,GnuCash,Sage,QuickBooks,Wave,Adobe Acrobat,FreshBooks,Untied,Ember",
+    "Skills": "ACCA,AAT,ACA,CIMA,Financial Analysis,Cash-flow Forecasting,Insolvency,Advisory,Tax Advisory,Financial Reporting,IPA"
+  },
+  "Teacher": {
+    "Strands": "Teacher,Tutor",
+    "Bio": "The best teachers are the ones who are relaxed enough to get along with their students, but not too lenient as to lose control. You'll be a natural educator, able to summarise complex concepts into digestible morsels. You'll genuinely care about each student's growth, able to spot any social issues that might be holding them back. You're likely to be passionate about your subject, able to inspire children of all ages and abilities. Expect plenty of PowerPoints and marking as you take control of the next generation's future.",
+    "Toolkit": "PowerPoint,MyMaths,Excel,Buncee,Bakpax,PearDeck,FlipGrid,Edurio,Labster,Silas Solutions,ZeeMaps,TikiToki,Padlet,Kidblog",
+    "Skills": "TeachFirst,SKE,PGCSE,PGDE,School Direct,SKITT,Marking,Empathy,Patience,Succinct,UCAS"
+  },
+  "Academic": {
+    "Strands": "Academic,Professor,PHD,Doctor",
+    "Bio": "You'll be juggling delivering cutting edge research papers with teaching the next generation your area of expertise. Whether producing groundbreaking, peer-reviewed literature or inspiring a seminar full of students, you'll be devoted to adding to the knowledge pool and transferring that knowledge to the leaders of tomorrow. You'll be able to speak in front of a lecture theatre clearly and passionately, just as you'll spend time writing and analysing data.",
+    "Toolkit": "PowerPoint,Excel,Airtable,JStor,SQL,Python,Javascript,Tableau,Google Data Studio,Zotero,EndNote,Mendely,Evernote",
+    "Skills": "PHD,Referencing,Masters,Public Speaking,Marking,Peer Review,Data Analysis,Research,Impartiality"
+  },
+  "Assistant Director (Film/TV)": {
+    "Strands": "Creative Director,Casting Assistant,First AD,Production Assistant,Post-Production Assistant",
+    "Bio": "In the film and TV industry, you'll have to get experience in the high-octane life on set to progress. You'll start as a runner to get to grips with the fine details that go into production, ensuring everything runs smoothly. You'll likely progress to assistant director where you'll have a hand in the creative and management side of things. You'll be a keen consumer of all things films and TV, able to organise the various members on set. You'll get to know the fine details of the different camera angles, as you help arrange the actors, set and costume designers.",
+    "Toolkit": "ScreenSkills,StudioBinder,The Black List,CoverFly,Celtx,Launchpad,MovieMagic,Gorilla,Excel,Airtable,Kickstarter,Indiegogo,Sharegrid,LensRental,BackStage,Mandy",
+    "Skills": "Leadership,Organisation,Production,Audio"
+  },
+  "Recruiter": {
+    "Strands": "Recruiter ,Executive Search,Recruitment Consultant,Research Consultant,Talent Acquisition",
+    "Bio": "Finding the right people for a role isn't just a case of sifting through CVs and picking the best candidate. You'll be required to analyse what traits and skills make the perfect match for a company and prospective employee. You'll spend your days interviewing candidates, writing job specifications and discussing things like salary expectations and flexible working policy. Talent acquisition is generally in-house recruitment whereas consultants and executive search professionals (headhunters) work independently.",
+    "Toolkit": "Otta,Workinstartups,Cord,LinkedIn,Creative Access,TeamTailor,Fresh Team,Personio,Pinpoint,Greenhouse,Breezy,Hireselect,Plum,PeopleSearch,Codility,Gap Jumpers,Calendly,TestGorilla",
+    "Skills": "Persistence,Networking,Copywriting,Talent Spotting"
+  },
+  "Human Resources": {
+    "Strands": "HR,Leadership Coach,D&I Officer",
+    "Bio": "If recruitment is about talent acquisition, HR is about talent retention. You'll be conscientious and organised, able to build a vibrant company culture. Making sure new starters are onboarded smoothly, meet the team and acquaint themselves with company software is only one part of the job. You will be the steward of team building, ensuring a diverse team has enough benefits and socials to want to stay with the company. This could mean organising socials and events or learning sessions. In smaller organisations, you will likely perform both the recruiting and HR function.",
+    "Toolkit": "Charlie's HR,Lattice,Progression,Kissflow,Breezy,15 Five,Small Improvements,Trakstar,Talent LMS,Bonusly,CultureAmp,Tiny Pulse,OfficeVibe",
+    "Skills": "Conscienciousness,Diversity & Inclusion,Employee Onboarding,Culture Management,Event Management,Organisation"
+  }
+}

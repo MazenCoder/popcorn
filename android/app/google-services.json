@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "320913010853",
+    "project_id": "popcorn-e7b6a",
+    "storage_bucket": "popcorn-e7b6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320913010853:android:553174fb8002646ee15d4c",
+        "android_client_info": {
+          "package_name": "com.dentsu_innovations.flutter_voice_chat_using_agora"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "320913010853-7kkvs7js5p2epq8t6amcj33fm79f0v95.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dentsu_innovations.flutter_voice_chat_using_agora",
+            "certificate_hash": "54d45c6cb87036363b16274452b2ceafdf76cfea"
+          }
+        },
+        {
+          "client_id": "320913010853-6hg008lb037q79i513bft6c45j5a6ipj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjhdMWcJX3nOr6mPFclJgvHfpx8eVN7Ss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "320913010853-6hg008lb037q79i513bft6c45j5a6ipj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "320913010853-n2pp6v8rkt7dq20lkl9kd8fi0qlaaaot.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.popcorn.app.popcorn"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320913010853:android:0f3521a6f6d002a1e15d4c",
+        "android_client_info": {
+          "package_name": "com.popcorn.chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "320913010853-0te2uoe7gqgf4aimf4cvqr4cqioumguo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.popcorn.chat",
+            "certificate_hash": "65f423409fd535181fa94b16e77a3c369fb37352"
+          }
+        },
+        {
+          "client_id": "320913010853-6hg008lb037q79i513bft6c45j5a6ipj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjhdMWcJX3nOr6mPFclJgvHfpx8eVN7Ss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "320913010853-6hg008lb037q79i513bft6c45j5a6ipj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "320913010853-n2pp6v8rkt7dq20lkl9kd8fi0qlaaaot.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.popcorn.app.popcorn"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

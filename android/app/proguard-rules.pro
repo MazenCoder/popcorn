@@ -1,0 +1,7 @@
+-keep class com.hyphenate.** {*;}
+-dontwarn  com.hyphenate.**
+-keep class **.zego.**  { *; }
+-keep class **.zego.zim.**  { *; }
+-keep class **.**.zego_zim.** { *; }
+-keep class **.zego.** { *; }
+-keep class **.**.zego_zpns.** { *; }

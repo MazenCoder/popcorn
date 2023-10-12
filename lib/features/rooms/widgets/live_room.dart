@@ -102,7 +102,16 @@ class _LiveRoomState extends State<LiveRoom> {
                 ),
               ),
             ),
-          ) : const SizedBox.shrink();
+          ) : Container(
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: AssetImage(
+                    IMG.logo3,
+                ),
+              ),
+            ),
+          );
         }
     );
   }

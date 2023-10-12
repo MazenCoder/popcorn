@@ -122,7 +122,7 @@ class _FbGoogleSignInPageState extends State<FbGoogleSignInPage>
                             style: ElevatedButton.styleFrom(
                               backgroundColor: context.theme.primaryColor,
                             ),
-                            icon: Icon(MdiIcons.google),
+                            icon: const Icon(MdiIcons.google),
                             label: Text('sign_in_google'.tr),
                             onPressed: () async {
                               final user = await authLogic.signInWithGoogle(context);
@@ -135,24 +135,24 @@ class _FbGoogleSignInPageState extends State<FbGoogleSignInPage>
                           ),
                         ),
 
-                        SizedBox(
-                          width: Get.width - 100,
-                          child: ElevatedButton.icon(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: context.theme.primaryColor,
-                            ),
-                            icon: Icon(MdiIcons.facebook),
-                            label: Text('sign_in_facebook'.tr),
-                            onPressed: () async {
-                              final user = await authLogic.signInWithFacebook();
-                              if (user != null) {
-                                Get.to(() => SplashApp(
-                                  home: const NavigationApp(),
-                                ));
-                              }
-                            },
-                          ),
-                        ),
+                        // SizedBox(
+                        //   width: Get.width - 100,
+                        //   child: ElevatedButton.icon(
+                        //     style: ElevatedButton.styleFrom(
+                        //       backgroundColor: context.theme.primaryColor,
+                        //     ),
+                        //     icon: const Icon(MdiIcons.facebook),
+                        //     label: Text('sign_in_facebook'.tr),
+                        //     onPressed: () async {
+                        //       final user = await authLogic.signInWithFacebook();
+                        //       if (user != null) {
+                        //         Get.to(() => SplashApp(
+                        //           home: const NavigationApp(),
+                        //         ));
+                        //       }
+                        //     },
+                        //   ),
+                        // ),
 
                         SizedBox(
                           width: Get.width - 100,
@@ -160,7 +160,7 @@ class _FbGoogleSignInPageState extends State<FbGoogleSignInPage>
                             style: ElevatedButton.styleFrom(
                               backgroundColor: context.theme.primaryColor,
                             ),
-                            icon: Icon(MdiIcons.email),
+                            icon: const Icon(MdiIcons.email),
                             label: Text('sign_with_email'.tr),
                             onPressed: ()=> Get.to(() => const SignInPage()),
                           ),

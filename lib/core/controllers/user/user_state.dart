@@ -19,11 +19,13 @@ class UserState {
   late RxBool isMoorePostAvailable;
   DocumentSnapshot? _lastPostDocument;
 
+  late DateTime timeServer;
 
   UserState() {
     loading = false.obs;
     isFollowing = false;
     userPosts = <Widget>[].obs;
     isMoorePostAvailable = true.obs;
+    timeServer = DateTime.now();
   }
 }

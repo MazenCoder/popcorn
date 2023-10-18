@@ -16,20 +16,12 @@ class AllRoomPage extends StatefulWidget {
   _AllRoomPageState createState() => _AllRoomPageState();
 }
 
-class _AllRoomPageState extends State<AllRoomPage>
-    with AutomaticKeepAliveClientMixin<AllRoomPage> {
+class _AllRoomPageState extends State<AllRoomPage> with AutomaticKeepAliveClientMixin<AllRoomPage> {
 
 
   @override
   bool get wantKeepAlive => true;
 
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      roomLogic.initNewRooms();
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

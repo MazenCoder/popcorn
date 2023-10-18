@@ -1,14 +1,10 @@
-import 'package:popcorn/core/widgets_helper/widgets.dart';
 import 'package:popcorn/features/rooms/models/room_model.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:popcorn/core/models/user_model.dart';
+import 'package:popcorn/core/widgets_helper/widgets.dart';
 import 'package:popcorn/core/mobx/mobx_app.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../core/usecases/constants.dart';
-import 'package:popcorn/core/util/img.dart';
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 
@@ -27,8 +23,8 @@ class _EditRoomState extends State<EditRoom> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descController = TextEditingController();
   final _form = GlobalKey<FormState>();
-  final MobxApp mobxApp = MobxApp();
   final picker = ImagePicker();
+  final MobxApp mobxApp = MobxApp();
   File? _image;
 
 
@@ -146,13 +142,14 @@ class _EditRoomState extends State<EditRoom> {
                     child: ElevatedButton(
                       onPressed: () async {
                         if (_form.currentState?.validate()??false) {
-                          await roomLogic.editRoom(
+                          await roomLogic.updateRoom(
                             context: context,
-                            id: widget.room.id,
-                            name: _nameController.text.trim(),
-                            description: _descController.text.trim(),
-                            photoRoomUrl: widget.room.photoRoom,
-                            photoRoomPath: _image?.path,
+                            model: widget.room.copyWith(
+                              name: _nameController.text.trim(),
+                              description: _descController.text.trim(),
+                              roomImage: widget.room.roomImage,
+                            ),
+                            roomImagePath: _image?.path,
                           ).then((value) {
                             if (value) Get.back();
                           });

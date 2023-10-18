@@ -125,12 +125,12 @@ class _FbGoogleSignInPageState extends State<FbGoogleSignInPage>
                             icon: const Icon(MdiIcons.google),
                             label: Text('sign_in_google'.tr),
                             onPressed: () async {
-                              final user = await authLogic.signInWithGoogle(context);
-                              if (user != null) {
-                                Get.to(() => SplashApp(
-                                  home: const NavigationApp(),
-                                ));
-                              }
+                              // final user = await authLogic.signInWithGoogle(context);
+                              // if (user != null) {
+                              //   Get.to(() => SplashApp(
+                              //     home: const NavigationApp(),
+                              //   ));
+                              // }
                             },
                           ),
                         ),

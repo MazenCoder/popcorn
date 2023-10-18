@@ -23,7 +23,7 @@ class ProfileRoom extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (room.uid == user.uid)
+              if (room.author == user.uid)
                 IconButton(
                   icon: const Icon(Icons.edit),
                   onPressed: () => Get.to(() => EditRoom(room: room)),
@@ -40,7 +40,7 @@ class ProfileRoom extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text('ID: ${room.idRoom}',
+                  Text('ID: ${room.id}',
                     style: context.textTheme.bodyText2?.copyWith(
                       fontWeight: FontWeight.normal,
                       color: Colors.white70,

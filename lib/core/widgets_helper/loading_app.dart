@@ -1,8 +1,9 @@
 import 'package:popcorn/core/widgets_helper/responsive_safe_area.dart';
-import 'package:popcorn/core/util/img.dart';
+import 'package:simple_ripple_animation/simple_ripple_animation.dart';
+import 'package:popcorn/generated/assets.dart';
+import '../theme/generateMaterialColor.dart';
 import 'package:flutter/material.dart';
-import '../usecases/constants.dart';
-import 'dart:math' as math;
+import 'package:get/get.dart';
 
 
 
@@ -13,73 +14,57 @@ class LoadingApp extends StatefulWidget {
   _LoadingAppState createState() => _LoadingAppState();
 }
 
-class _LoadingAppState extends State<LoadingApp> with SingleTickerProviderStateMixin {
+class _LoadingAppState extends State<LoadingApp> {
 
-  late AnimationController animController;
-  late Animation<double> animation;
+  late Image image;
 
   @override
   void initState() {
-    _initAnimation();
     super.initState();
-  }
-
-  void _initAnimation() {
-    try {
-      animController = AnimationController(
-          duration: const Duration(seconds: 2), vsync: this);
-      final curvedAnimation = CurvedAnimation(
-        parent: animController,
-        curve: Curves.easeIn,
-        reverseCurve: Curves.easeOut,
-      );
-
-      animation = Tween<double>(
-          begin: 0, end: 2 * math.pi).animate(curvedAnimation)
-        ..addStatusListener((status) {
-          if (status == AnimationStatus.completed) {
-            animController.reverse();
-          } else if (status == AnimationStatus.dismissed) {
-            animController.forward();
-          }}
-        );
-      animController.forward();
-    } catch(e) {
-      logger.e("error, _initAnimation: $e");
-      animController.dispose();
-    }
+    image = Image(
+      image: const AssetImage(Assets.imagesLogo2),
+      filterQuality: FilterQuality.low,
+      gaplessPlayback: true,
+      fit: BoxFit.contain,
+      height: Get.width / 3,
+      width: Get.width / 3,
+    );
   }
 
   @override
-  void dispose() {
-    animController.dispose();
-    super.dispose();
+  void didChangeDependencies() {
+    precacheImage(image.image, context);
+    super.didChangeDependencies();
   }
+
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return ResponsiveSafeArea(
       builder: (_) => Scaffold(
         body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(Assets.imagesSplash),
+              fit: BoxFit.cover,
+            ),
+          ),
           alignment: Alignment.center,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                FractionallySizedBox(
-                  widthFactor: 0.9,
-                  child: FadeTransition(
-                    opacity: animation,
-                    child: Padding(
-                      padding: const EdgeInsets.all(18.0),
-                      child: Image.asset(
-                        IMG.logo,
-                        color: Colors.white,
-                        width: size.width/1.2,
-                        // height: size.width/5.2,
-                      ),
+                RippleAnimation(
+                  repeat: true,
+                  color: primaryColor.shade300,
+                  minRadius: 36,
+                  ripplesCount: 25,
+                  child: ClipOval(
+                    child: Container(
+                      color: primaryColor,
+                      padding: const EdgeInsets.all(15),
+                      child: image,
                     ),
                   ),
                 ),

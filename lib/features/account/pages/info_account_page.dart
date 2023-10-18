@@ -67,7 +67,7 @@ class _InfoAccountPageState extends State<InfoAccountPage>
               MdiIcons.accountDetails,
               color: Colors.white,
             ),
-            onPressed: () => Get.to(() => EditProfile()),
+            onPressed: () => Get.to(() => const EditProfile()),
           ),
         ],
       ),
@@ -111,8 +111,7 @@ class _InfoAccountPageState extends State<InfoAccountPage>
                                         final pickedFile = await picker.pickImage(source: ImageSource.camera);
                                         if (pickedFile != null) {
                                           File? croppedFile = await utilsLogic.croppedFile(File(pickedFile.path));
-                                          if (croppedFile != null) {
-                                            if (!mounted) return;
+                                          if (croppedFile != null && mounted) {
                                             await userLogic.uploadPhotoProfile(croppedFile);
                                           }
                                         }
@@ -120,8 +119,7 @@ class _InfoAccountPageState extends State<InfoAccountPage>
                                         final pickedFile = await picker.pickImage(source: ImageSource.gallery);
                                         if (pickedFile != null) {
                                           File? croppedFile = await utilsLogic.croppedFile(File(pickedFile.path));
-                                          if (croppedFile != null) {
-                                            if (!mounted) return;
+                                          if (croppedFile != null && mounted) {
                                             await userLogic.uploadPhotoProfile(croppedFile);
                                           }
                                         }
@@ -156,7 +154,7 @@ class _InfoAccountPageState extends State<InfoAccountPage>
                             ),
                           ),
                         ),
-                        Text('ID: ${user.uniqueKey}',
+                        Text('ID: ${user.uid.hashCode}',
                           style: Get.textTheme.bodyText2?.copyWith(
                             color: Colors.white,
                             fontSize: 14,
@@ -203,12 +201,12 @@ class _InfoAccountPageState extends State<InfoAccountPage>
                                     onTap: () async {
 
                                     },
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 3),
+                                    child: const Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: 3),
                                       child: Row(
                                         children: [
-                                          const Icon(MdiIcons.genderMale, color: Colors.white, size: 20),
-                                          const Padding(
+                                          Icon(MdiIcons.genderMale, color: Colors.white, size: 20),
+                                          Padding(
                                             padding: EdgeInsets.symmetric(horizontal: 2),
                                             child: Text('0',
                                               style: TextStyle(

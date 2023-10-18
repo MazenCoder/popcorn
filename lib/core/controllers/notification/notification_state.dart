@@ -1,10 +1,10 @@
-
-
-class NotificationState {
-  String? token;
-
-  NotificationState() {
-    ///Initialize variables
-    token = null;
-  }
-}
+//
+//
+// class NotificationState {
+//   String? token;
+//
+//   NotificationState() {
+//     ///Initialize variables
+//     token = null;
+//   }
+// }

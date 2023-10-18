@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 class RoomState {
 
+  late int numberPage;
   late RxList<UserModel> receiverUsers;
   late RxMap<int, SpeakerModel> speakers;
   // late RxList<SpeakerModel> usersJoined;
@@ -16,6 +17,8 @@ class RoomState {
   DocumentSnapshot? lastDocument;
   late RxBool isMooreAvailable;
   late RxBool loading;
+
+  late bool loadingMyRoom;
   late RxBool enableSpeakerphone;
   late RxBool openMicrophone;
   late RxBool playEffect;
@@ -26,6 +29,7 @@ class RoomState {
   late RxBool joined;
 
   RoomState() {
+    numberPage = 1;
     receiverUsers = <UserModel>[].obs;
     speakers = <int, SpeakerModel>{}.obs;
     rooms = <Widget>[].obs;
@@ -34,6 +38,7 @@ class RoomState {
     // engine = createAgoraRtcEngine();
     isMooreAvailable = false.obs;
     loading = false.obs;
+    loadingMyRoom = false;
     enableSpeakerphone = false.obs;
     openMicrophone = false.obs;
     playEffect = false.obs;

@@ -51,7 +51,7 @@ class _GlowingEffectState extends State<GlowingEffect>
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        final key = userState.user!.uniqueKey;
+        final key = userState.user!.uid.hashCode;
         if (roomState.speakers[key]?.isSpeaking??false) {
           return;
         } else if (_user != null && _user?.uid == userState.user?.uid) {
@@ -83,7 +83,7 @@ class _GlowingEffectState extends State<GlowingEffect>
                 state: true,
               );
               setState(() {
-                _hashCode = userState.user?.uniqueKey;
+                _hashCode = userState.user?.uid.hashCode;
                 _user = userState.user;
               });
               return;

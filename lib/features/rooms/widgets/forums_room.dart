@@ -2,12 +2,11 @@ import 'package:popcorn/features/rooms/models/room_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:popcorn/core/models/user_model.dart';
-import '../../../core/widgets_helper/widgets.dart';
 import '../../../core/usecases/constants.dart';
 import '../../../core/usecases/enums.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'card_shimmer_room.dart';
+import 'card_room_shimmer.dart';
 import 'package:get/get.dart';
 
 
@@ -35,50 +34,50 @@ class _ForumsRoomState extends State<ForumsRoom> {
   final FocusNode inputNode = FocusNode();
 
 
-  Stream<List<RoomModel>> getRooms() async* {
-    List<RoomModel> dataToReturn = [];
-    Stream<QuerySnapshot> stream = roomsRef
-        .orderBy('timestamp', descending: widget.descending)
-        .snapshots();
-
-    await for (QuerySnapshot q in stream) {
-      for (QueryDocumentSnapshot document in q.docs) {
-        final json = document.data() as Map<String, dynamic>;
-        RoomModel chatFromDoc = RoomModel.fromJson(json);
-        List<dynamic> memberIds = chatFromDoc.memberIds!;
-        logger.i('memberIds: $memberIds');
-        List<UserModel> membersInfo = [];
-        for (var userId in memberIds)  {
-          final doc = await usersRef.doc(userId).get();
-          final json = doc.data() as Map<String, dynamic>;
-          final receiverUser = UserModel.fromJson(json);
-          membersInfo.add(receiverUser);
-        }
-
-        RoomModel chatWithUserInfo = RoomModel(
-          id: chatFromDoc.id,
-          uid: chatFromDoc.uid,
-          name: chatFromDoc.name,
-          description: chatFromDoc.description,
-          memberIds: chatFromDoc.memberIds,
-          memberInfo: membersInfo,
-          idRoom: chatFromDoc.idRoom,
-          photoRoom: chatFromDoc.photoRoom,
-          readStatus: chatFromDoc.readStatus,
-          recentMessage: chatFromDoc.recentMessage,
-          recentSender: chatFromDoc.recentSender,
-          welcomeMessage: chatFromDoc.welcomeMessage,
-          timestamp: chatFromDoc.timestamp,
-          status: chatFromDoc.status,
-        );
-
-        dataToReturn.removeWhere((chat) => chat.id == chatWithUserInfo.id);
-
-        dataToReturn.add(chatWithUserInfo);
-      }
-      yield dataToReturn;
-    }
-  }
+  // Stream<List<RoomModel>> getRooms() async* {
+  //   List<RoomModel> dataToReturn = [];
+  //   Stream<QuerySnapshot> stream = roomsRef
+  //       .orderBy('timestamp', descending: widget.descending)
+  //       .snapshots();
+  //
+  //   await for (QuerySnapshot q in stream) {
+  //     for (QueryDocumentSnapshot document in q.docs) {
+  //       final json = document.data() as Map<String, dynamic>;
+  //       RoomModel chatFromDoc = RoomModel.fromJson(json);
+  //       List<dynamic> memberIds = chatFromDoc.memberIds!;
+  //       logger.i('memberIds: $memberIds');
+  //       List<UserModel> membersInfo = [];
+  //       for (var userId in memberIds)  {
+  //         final doc = await usersRef.doc(userId).get();
+  //         final json = doc.data() as Map<String, dynamic>;
+  //         final receiverUser = UserModel.fromJson(json);
+  //         membersInfo.add(receiverUser);
+  //       }
+  //
+  //       RoomModel chatWithUserInfo = RoomModel(
+  //         id: chatFromDoc.id,
+  //         uid: chatFromDoc.uid,
+  //         name: chatFromDoc.name,
+  //         description: chatFromDoc.description,
+  //         memberIds: chatFromDoc.memberIds,
+  //         memberInfo: membersInfo,
+  //         idRoom: chatFromDoc.idRoom,
+  //         photoRoom: chatFromDoc.photoRoom,
+  //         readStatus: chatFromDoc.readStatus,
+  //         recentMessage: chatFromDoc.recentMessage,
+  //         recentSender: chatFromDoc.recentSender,
+  //         welcomeMessage: chatFromDoc.welcomeMessage,
+  //         timestamp: chatFromDoc.timestamp,
+  //         status: chatFromDoc.status,
+  //       );
+  //
+  //       dataToReturn.removeWhere((chat) => chat.id == chatWithUserInfo.id);
+  //
+  //       dataToReturn.add(chatWithUserInfo);
+  //     }
+  //     yield dataToReturn;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +89,7 @@ class _ForumsRoomState extends State<ForumsRoom> {
           return ListView.builder(
             itemCount: 5,
             itemBuilder: (context, index) {
-              return const CardShimmerRoom();
+              return const CardRoomShimmer();
             },
           );
         } else {
@@ -100,11 +99,11 @@ class _ForumsRoomState extends State<ForumsRoom> {
             enablePullDown: true,
             enablePullUp: true,
             onRefresh: () async {
-              await roomLogic.initNewRooms(true);
+              // await roomLogic.initNewRooms(true);
               return refreshController.refreshCompleted();
             },
             onLoading: () async {
-              await roomLogic.getMoreNewRooms(false);
+              // await roomLogic.getMoreNewRooms(false);
               return refreshController.loadComplete();
             },
             footer: CustomFooter(

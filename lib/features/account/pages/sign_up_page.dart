@@ -267,31 +267,31 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                         FocusManager.instance.primaryFocus?.unfocus();
                         if (_formSignUp.currentState?.validate()??false) {
                           if (checkedValue) {
-                            final model = UserModel(
-                              role: 'user', uid: '',
-                              uniqueKey: utilsLogic.createUniqueId(),
-                              email: _emailController.text.trim(),
-                              displayName: _displayNameController.text.trim(),
-                              password: _passController.text.trim(),
-                              phone: _phoneController.text.trim(),
-                              countryCode: _countryCode,
-                              countryName: _countryName,
-                              dialingCode: _dialingCode,
-                              isVerified: false,
-                              level: 0,
-                              status: statusUser.keys.first,
-                              timestamp: FieldValue.serverTimestamp(),
-                              token: notificationState.token,
-                            );
-                            await authLogic.createAccount(
-                              model: model, context: context,
-                            ).then((value) {
-                              if (value != null) {
-                                Get.offAll(() => SplashApp(
-                                  home: const NavigationApp(),
-                                ));
-                              }
-                            });
+                            // final model = UserModel(
+                            //   role: 'user', uid: '',
+                            //   uniqueKey: utilsLogic.createUniqueId(),
+                            //   email: _emailController.text.trim(),
+                            //   displayName: _displayNameController.text.trim(),
+                            //   password: _passController.text.trim(),
+                            //   phone: _phoneController.text.trim(),
+                            //   countryCode: _countryCode,
+                            //   countryName: _countryName,
+                            //   dialingCode: _dialingCode,
+                            //   isVerified: false,
+                            //   level: 0,
+                            //   status: statusUser.keys.first,
+                            //   timestamp: FieldValue.serverTimestamp(),
+                            //   token: notificationState.token,
+                            // );
+                            // await authLogic.createAccount(
+                            //   model: model, context: context,
+                            // ).then((value) {
+                            //   if (value != null) {
+                            //     Get.offAll(() => SplashApp(
+                            //       home: const NavigationApp(),
+                            //     ));
+                            //   }
+                            // });
                           } else {
                             utilsLogic.showSnack(
                               type: SnackBarType.info,

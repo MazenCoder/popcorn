@@ -864,7 +864,7 @@ class UtilsLogic extends GetxController {
 
   String accountCreateAt(UserModel account) {
     try {
-      return timeago.format(account.timestamp, locale: 'en_short');
+      return timeago.format(account.createdAt, locale: 'en_short');
     } catch (e) {
       return '';
     }
@@ -900,7 +900,7 @@ class UtilsLogic extends GetxController {
               if (dateBirth != null) {
                 LoadingDialog.show(context: context);
                 bool success = await userLogic.updateAge(dateBirth!);
-                LoadingDialog.hide(context: context);
+                if (context.mounted) LoadingDialog.hide(context: context);
                 navigator.pop(success);
               }
             },

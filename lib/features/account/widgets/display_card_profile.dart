@@ -151,7 +151,7 @@ class _DisplayCardProfileState extends State<DisplayCardProfile> {
                       height: 22, width: 22,
                     ),
                     const SizedBox(width: 6),
-                    Text('ID: ${widget.user.uniqueKey}'),
+                    Text('ID: ${widget.user.uid.hashCode}'),
                   ],
                 ),
                 Expanded(child: Container()),

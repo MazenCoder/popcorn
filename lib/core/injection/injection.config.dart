@@ -4,6 +4,9 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+// ignore_for_file: type=lint
+// coverage:ignore-file
+
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:io' as _i6;
 
@@ -16,17 +19,19 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i12;
 import 'package:http/http.dart' as _i5;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:popcorn/core/injection/register_firebase.dart' as _i15;
-import 'package:popcorn/core/injection/register_module.dart' as _i16;
+import 'package:popcorn/core/injection/register_firebase.dart' as _i19;
+import 'package:popcorn/core/injection/register_module.dart' as _i18;
 import 'package:popcorn/core/usecases/hive_utils.dart' as _i13;
 import 'package:popcorn/core/util/app_utils.dart' as _i3;
 import 'package:popcorn/core/util/app_utils_impl.dart' as _i4;
-import 'package:popcorn/features/account/cubit/user_profile_cubit.dart' as _i14;
+import 'package:popcorn/features/account/cubit/user_profile_cubit.dart' as _i17;
+import 'package:popcorn/features/account2/cubits/login_cubit.dart' as _i14;
+import 'package:popcorn/features/account2/cubits/signup_cubit.dart' as _i15;
+import 'package:popcorn/features/splash/presentation/cubit/splash_cubit.dart'
+    as _i16;
 
-/// ignore_for_file: unnecessary_lambdas
-/// ignore_for_file: lines_longer_than_80_chars
 extension GetItInjectableX on _i1.GetIt {
-  /// initializes the registration of main-scope dependencies inside of [GetIt]
+// initializes the registration of main-scope dependencies inside of GetIt
   Future<_i1.GetIt> init({
     String? environment,
     _i2.EnvironmentFilter? environmentFilter,
@@ -51,12 +56,18 @@ extension GetItInjectableX on _i1.GetIt {
     gh.singleton<_i10.FirebaseMessaging>(registerFirebase.firebaseMessaging);
     gh.lazySingleton<_i11.FirebaseStorage>(() => registerFirebase.storage);
     gh.lazySingleton<_i12.GoogleSignIn>(() => registerFirebase.googleSignIn);
-    gh.lazySingleton<_i13.HiveUtils>(() => _i13.HiveUtils());
-    gh.factory<_i14.UserProfileCubit>(() => _i14.UserProfileCubit());
+    await gh.factoryAsync<_i13.HiveUtils>(
+      () => registerModule.hiveUtils,
+      preResolve: true,
+    );
+    gh.factory<_i14.LoginCubit>(() => _i14.LoginCubit());
+    gh.factory<_i15.SignupCubit>(() => _i15.SignupCubit());
+    gh.factory<_i16.SplashCubit>(() => _i16.SplashCubit());
+    gh.factory<_i17.UserProfileCubit>(() => _i17.UserProfileCubit());
     return this;
   }
 }
 
-class _$RegisterFirebase extends _i15.RegisterFirebase {}
+class _$RegisterModule extends _i18.RegisterModule {}
 
-class _$RegisterModule extends _i16.RegisterModule {}
+class _$RegisterFirebase extends _i19.RegisterFirebase {}

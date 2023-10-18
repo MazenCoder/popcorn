@@ -439,21 +439,6 @@ mixin _$MobxApp on MobxAppBase, Store {
     });
   }
 
-  late final _$fileAtom = Atom(name: 'MobxAppBase.file', context: context);
-
-  @override
-  File? get file {
-    _$fileAtom.reportRead();
-    return super.file;
-  }
-
-  @override
-  set file(File? value) {
-    _$fileAtom.reportWrite(value, super.file, () {
-      super.file = value;
-    });
-  }
-
   late final _$gridLargeAtom =
       Atom(name: 'MobxAppBase.gridLarge', context: context);
 
@@ -482,6 +467,37 @@ mixin _$MobxApp on MobxAppBase, Store {
   set level(double value) {
     _$levelAtom.reportWrite(value, super.level, () {
       super.level = value;
+    });
+  }
+
+  late final _$fileAtom = Atom(name: 'MobxAppBase.file', context: context);
+
+  @override
+  File? get file {
+    _$fileAtom.reportRead();
+    return super.file;
+  }
+
+  @override
+  set file(File? value) {
+    _$fileAtom.reportWrite(value, super.file, () {
+      super.file = value;
+    });
+  }
+
+  late final _$fileBackgroundAtom =
+      Atom(name: 'MobxAppBase.fileBackground', context: context);
+
+  @override
+  File? get fileBackground {
+    _$fileBackgroundAtom.reportRead();
+    return super.fileBackground;
+  }
+
+  @override
+  set fileBackground(File? value) {
+    _$fileBackgroundAtom.reportWrite(value, super.fileBackground, () {
+      super.fileBackground = value;
     });
   }
 
@@ -764,17 +780,6 @@ mixin _$MobxApp on MobxAppBase, Store {
   }
 
   @override
-  void setFile(File? val) {
-    final _$actionInfo =
-        _$MobxAppBaseActionController.startAction(name: 'MobxAppBase.setFile');
-    try {
-      return super.setFile(val);
-    } finally {
-      _$MobxAppBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void setDisplayLayout(bool val) {
     final _$actionInfo = _$MobxAppBaseActionController.startAction(
         name: 'MobxAppBase.setDisplayLayout');
@@ -786,11 +791,33 @@ mixin _$MobxApp on MobxAppBase, Store {
   }
 
   @override
-  void setLevel(double val) {
+  void setLevel(double value) {
     final _$actionInfo =
         _$MobxAppBaseActionController.startAction(name: 'MobxAppBase.setLevel');
     try {
-      return super.setLevel(val);
+      return super.setLevel(value);
+    } finally {
+      _$MobxAppBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setFile(File? value) {
+    final _$actionInfo =
+        _$MobxAppBaseActionController.startAction(name: 'MobxAppBase.setFile');
+    try {
+      return super.setFile(value);
+    } finally {
+      _$MobxAppBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setFileBackground(File? value) {
+    final _$actionInfo = _$MobxAppBaseActionController.startAction(
+        name: 'MobxAppBase.setFileBackground');
+    try {
+      return super.setFileBackground(value);
     } finally {
       _$MobxAppBaseActionController.endAction(_$actionInfo);
     }
@@ -826,9 +853,10 @@ replyComments: ${replyComments},
 indexAction: ${indexAction},
 textIsNotEmpty: ${textIsNotEmpty},
 idVisibility: ${idVisibility},
-file: ${file},
 gridLarge: ${gridLarge},
-level: ${level}
+level: ${level},
+file: ${file},
+fileBackground: ${fileBackground}
     ''';
   }
 }

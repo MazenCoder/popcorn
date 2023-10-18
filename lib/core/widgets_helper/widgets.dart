@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:popcorn/core/theme/generateMaterialColor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:popcorn/core/usecases/constants.dart';
-import '../../features/rooms/models/speak_model.dart';
 import '../../features/rooms/models/room_model.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:flutter/material.dart';
@@ -62,11 +61,11 @@ Widget chatCircleAvatar(UserModel? userModel, [double radius = 18]) {
 }
 
 
-Widget circleAvatarRoom(RoomModel? userModel, [double radius = 20]) {
-  if (userModel !=  null && userModel.photoRoom != null) {
+Widget circleAvatarRoom(RoomModel? model, [double radius = 20]) {
+  if (model !=  null && model.roomImage != null) {
     return CircleAvatar(
       radius: radius,
-      backgroundImage: CachedNetworkImageProvider(userModel.photoRoom!),
+      backgroundImage: CachedNetworkImageProvider('${model.roomImage}'),
     );
   } else {
     return CircleAvatar(
@@ -76,9 +75,9 @@ Widget circleAvatarRoom(RoomModel? userModel, [double radius = 20]) {
   }
 }
 
-Widget imageCardRoom(RoomModel? userModel, [double radius = 20]) {
-  final isLtr = langController.isLtr();
-  if (userModel !=  null && userModel.photoRoom != null) {
+Widget imageCardRoom(RoomModel? model, [double radius = 20]) {
+  final isLtr = languageLogic.isLtr();
+  if (model !=  null && model.roomImage != null) {
     return ClipRRect(
       borderRadius: BorderRadius.only(
         topLeft: isLtr ? Radius.zero : const Radius.circular(5),
@@ -86,12 +85,26 @@ Widget imageCardRoom(RoomModel? userModel, [double radius = 20]) {
         topRight: isLtr ? const Radius.circular(5) : Radius.zero,
         bottomRight: isLtr ? const Radius.circular(5) : Radius.zero,
       ),
-      child: Image.network(
-        userModel.photoRoom!,
-        fit: BoxFit.fill,
-        height: 90,
-        width: 90,
+      child: CachedNetworkImage(
+        imageUrl: '${model.roomImage}',
+        height: 90, width: 90,
+        placeholder: (context, url) => const Padding(
+          padding: EdgeInsets.all(2),
+          child: Center(child: CircularProgressIndicator()),
+        ),
+        errorWidget: (context, url, error) => Image.asset(
+          IMG.defaultImg,
+          fit: BoxFit.fill,
+          height: 90,
+          width: 90,
+        ),
       ),
+      // child: Image.network(
+      //   '${model.roomImage}',
+      //   fit: BoxFit.fill,
+      //   height: 90,
+      //   width: 90,
+      // ),
     );
   } else {
     return ClipRRect(
@@ -111,12 +124,12 @@ Widget imageCardRoom(RoomModel? userModel, [double radius = 20]) {
   }
 }
 
-Widget imageLiveRoom(RoomModel? userModel, [double radius = 20]) {
-  if (userModel !=  null && userModel.photoRoom != null) {
+Widget imageLiveRoom(RoomModel? model, [double radius = 20]) {
+  if (model !=  null && model.roomImage != null) {
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(6)),
       child: Image.network(
-        userModel.photoRoom!,
+        '${model.roomImage}',
         fit: BoxFit.fill,
         height: radius,
         width: radius,

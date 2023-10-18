@@ -1,4 +1,6 @@
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:popcorn/core/usecases/constants.dart';
+import 'package:popcorn/core/usecases/enums.dart';
 import 'package:popcorn/features/rooms/widgets/live_room.dart';
 import 'package:popcorn/features/rooms/models/room_model.dart';
 import '../../../core/theme/generateMaterialColor.dart';
@@ -11,7 +13,7 @@ import 'package:get/get.dart';
 
 
 class CardRoom extends StatelessWidget {
-  final RoomModel room;
+  final RoomAuthorModel room;
   const CardRoom({
     required this.room,
     Key? key,
@@ -20,11 +22,16 @@ class CardRoom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.to(() => LiveRoom(room: room)),
-      // onTap: () async {
-      //   await utilsLogic.checkMemberIds(room.id);
-      //   Get.to(() => ChatScreenGroupPage(room: room));
-      // },
+      onTap: () {
+        if (networkState.isConnected) {
+          Get.to(() => LiveRoom(
+            key: Key(room.id),
+            room: room,
+          ));
+        } else {
+          utilsLogic.showSnack(type: SnackBarType.unconnected);
+        }
+      },
       child: Card(
         color: secondaryColor.shade800,
         child: Row(

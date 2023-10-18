@@ -1,5 +1,6 @@
 import 'package:popcorn/packages/bottom_sheet/bottom_sheets/material_bottom_sheet.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import '../../../core/controllers/notification/notification_controller.dart';
 import '../../../packages/country_code/country_code_picker.dart';
 import '../../../core/widgets_helper/responsive_safe_area.dart';
 import '../../../core/controllers/user/user_logic.dart';
@@ -40,7 +41,7 @@ class _EditProfileState extends State<EditProfile> {
   late DateTime initialDate;
   String initialValue = '';
   DateTime? dateBirth;
-
+  Genders? gender;
 
   @override
   void initState() {
@@ -51,6 +52,10 @@ class _EditProfileState extends State<EditProfile> {
     _countryName = user.countryName ?? _countryName;
     _countryCode = user.countryCode ?? _countryCode;
     _dialingCode = user.dialingCode ?? _dialingCode;
+    int? genderId = userState.user?.genderId;
+    if (genderId != null) {
+      gender = Genders.values.firstWhereOrNull((item) => item.id == genderId);
+    }
     super.initState();
   }
 
@@ -302,7 +307,7 @@ class _EditProfileState extends State<EditProfile> {
                                   String? email = await authLogic.resetPasswordDialog(context);
                                   FocusManager.instance.primaryFocus?.unfocus();
                                   if (email != null) {
-                                    await authLogic.resetPassword(context, email);
+                                    // await authLogic.resetPassword(context, email);
                                   }
                                 },
                                 trailing: const Icon(MdiIcons.lockReset),
@@ -332,6 +337,7 @@ class _EditProfileState extends State<EditProfile> {
                                 onPressed: () async {
                                   if (_form.currentState?.validate()??false) {
                                     FocusManager.instance.primaryFocus?.unfocus();
+                                    /*
                                    await userLogic.updateInfo(
                                      displayName: _displayName.text.trim(),
                                      phone: _phoneController.text.trim(),
@@ -341,6 +347,22 @@ class _EditProfileState extends State<EditProfile> {
                                      countryCode: _countryCode,
                                      context: context,
                                    );
+                                   */
+
+                                    await userLogic.updateInfo(
+                                      context: context,
+                                      user: logic.state.user!.copyWith(
+                                        displayName: _displayName.text.trim(),
+                                        phone: (_phoneController.text.isNotEmpty) ? _phoneController.text.trim() : null,
+                                        bio: (_bioController.text.isNotEmpty) ? _bioController.text.trim() : null,
+                                        countryName: (_phoneController.text.isNotEmpty) ? _countryName : null,
+                                        dialingCode: (_phoneController.text.isNotEmpty) ? _dialingCode : null,
+                                        countryCode: (_phoneController.text.isNotEmpty) ? _countryCode : null,
+                                        token: NotificationController.firebaseAppToken,
+                                        genderId: gender?.id,
+                                      ),
+                                    );
+
                                   }
                                 },
                               ),

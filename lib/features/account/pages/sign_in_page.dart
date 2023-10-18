@@ -177,16 +177,16 @@ class _SignInPageState extends State<SignInPage> with SingleTickerProviderStateM
                           onPressed: () async {
                             FocusManager.instance.primaryFocus?.unfocus();
                             if (_formSignIn.currentState?.validate()??false) {
-                              await authLogic.signInWithEmailAndPass(
-                                context: context, email: _emailController.text.trim(),
-                                pass: _passController.text.trim(),
-                              ).then((value) {
-                                if (value != null) {
-                                  Get.offAll(() => SplashApp(
-                                    home: const NavigationApp(),
-                                  ));
-                                }
-                              });
+                              // await authLogic.signInWithEmailAndPass(
+                              //   context: context, email: _emailController.text.trim(),
+                              //   pass: _passController.text.trim(),
+                              // ).then((value) {
+                              //   if (value != null) {
+                              //     Get.offAll(() => SplashApp(
+                              //       home: const NavigationApp(),
+                              //     ));
+                              //   }
+                              // });
                             }
                           },
                         ),

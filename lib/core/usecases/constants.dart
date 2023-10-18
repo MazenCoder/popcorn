@@ -1,24 +1,20 @@
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import '../controllers/notification/notification_logic.dart';
-import '../controllers/notification/notification_state.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../features/rooms/logic/room_logic.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../features/rooms/logic/room_state.dart';
+import '../controllers/api_client/api_client.dart';
 import '../controllers/network/network_logic.dart';
 import '../controllers/network/network_state.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../controllers/following_controller.dart';
 import '../controllers/followers_controller.dart';
 import '../controllers/utils/utils_logic.dart';
 import '../controllers/utils/utils_state.dart';
 import '../controllers/post_controllerl.dart';
-import '../models/recieved_notification.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 import '../controllers/chat/chat_logic.dart';
 import '../controllers/chat/chat_state.dart';
@@ -26,12 +22,10 @@ import '../controllers/auth/auth_logic.dart';
 import '../controllers/auth/auth_state.dart';
 import '../controllers/user/user_logic.dart';
 import '../controllers/user/user_state.dart';
-import '../theme/generateMaterialColor.dart';
 import 'package:http/http.dart' as http;
 import '../langs/lang_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:logger/logger.dart';
 import '../util/app_utils.dart';
 import 'package:intl/intl.dart';
@@ -44,20 +38,14 @@ import 'dart:io';
 
 
 
-
-// const Algolia algolia = Algolia.init(apiKey: '', applicationId: '');
-
-
-
 final FirebaseMessaging firebaseMessaging = GetIt.I.get<FirebaseMessaging>();
 final FirebaseFirestore firebaseFirestore = GetIt.I.get<FirebaseFirestore>();
-final GoogleSignIn googleSignIn = GetIt.I.get<GoogleSignIn>();
 final FirebaseStorage storage = GetIt.I.get<FirebaseStorage>();
-final FirebaseAuth auth = GetIt.I.get<FirebaseAuth>();
-// final AgoraRtmClient client = GetIt.I.get<AgoraRtmClient>();
-final http.Client httpClient = GetIt.I.get<http.Client>();
-final Directory directory = GetIt.I.get<Directory>();
+final GoogleSignIn googleSignIn = GetIt.I.get<GoogleSignIn>();
 final FacebookAuth facebookAuth = GetIt.I.get<FacebookAuth>();
+final http.Client httpClient = GetIt.I.get<http.Client>();
+final FirebaseAuth auth = GetIt.I.get<FirebaseAuth>();
+final Directory directory = GetIt.I.get<Directory>();
 final HiveUtils hiveUtils = GetIt.I.get<HiveUtils>();
 final AppUtils appUtils = GetIt.I.get<AppUtils>();
 final MobxApp mobxApp = MobxApp();
@@ -124,18 +112,24 @@ final UserLogic userLogic = UserLogic.instance;
 final UserState userState = userLogic.state;
 
 //! Lang
-final LangController langController = LangController.instance;
-
-//! NotificationLogic
-final NotificationLogic notificationLogic = NotificationLogic.instance;
-final NotificationState notificationState = notificationLogic.state;
+final LangController languageLogic = LangController.instance;
 
 //! ChatLogic
 final ChatLogic chatLogic = ChatLogic.instance;
 final ChatState chatState = chatLogic.state;
 
+//! ApiClient
+final ApiClient apiClient = ApiClient.instance;
+
+
 
 const String baseUrl = 'https://us-central1-popcorn-e7b6a.cloudfunctions.net';
+// const String baseUrlApi = '$baseUrl/api';
+const String baseUrlApi = 'http://192.168.1.100:3008/api';
+const String termsOfServiceUrl = 'https://www.app-popcorn.com';
+const String appSign = '8b6e715d1fe543076ef397e55fe0aef6b3e766947027786d3c2043368171a307';
+const String pathUserProfile = 'https://firebasestorage.googleapis.com/v0/b/popcorn-e7b6a.appspot.com/o/users';
+
 const String googleApiKey = 'AIzaSyBSLCHYeZFSC7FUk1_x48sjLaTrUWUjBpw';
 final DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
 final DateFormat timeFormat = DateFormat('E, h:mm a');
@@ -328,12 +322,22 @@ Map<int, String> statusUser = {
 //   3: "delete".tr,
 // };
 
-Map<int, String> statusRoom = {
-  0: "actively".tr,
-  1: "banned".tr,
-  2: "archive".tr,
-  3: "delete".tr,
-};
+// Map<int, String> statusRoom = {
+//   0: "actively".tr,
+//   1: "banned".tr,
+//   2: "archive".tr,
+//   3: "delete".tr,
+// };
+
+enum RoomStatus {
+  active(0, 'active'),
+  banned(1, 'banned'),
+  archive(2, 'archive'),
+  delete(3, 'delete');
+  final int id;
+  final String value;
+  const RoomStatus(this.id, this.value);
+}
 
 Map<int, String> micOption = {
   0: "take_mic".tr,
@@ -345,74 +349,12 @@ RateMyApp rateMyApp = RateMyApp(
   preferencesPrefix: Keys.rateApp,
   minDays: 3, minLaunches: 7,
   remindDays: 2, remindLaunches: 5,
-  googlePlayIdentifier: 'com.popcorn.app.popcorn',
-  appStoreIdentifier: 'com.popcorn.app.popcorn',
+  googlePlayIdentifier: 'com.popcorn.chat',
+  appStoreIdentifier: 'com.popcorn.app',
 );
 
-// final Future<FirebaseApp> firebaseInitialization = Firebase.initializeApp();
-final AndroidNotificationChannel channel = AndroidNotificationChannel(
-    'high_importance_channel', 'High Importance Notifications',
-    importance: Importance.max, ledColor: primaryColor
-);
-
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-final BehaviorSubject<RecievedNotification> didReceiveNotificationSubject = BehaviorSubject<RecievedNotification>();
 
 
-final DarwinInitializationSettings initializationSettingsDarwin = DarwinInitializationSettings(
-    notificationCategories: [
-      DarwinNotificationCategory(
-        'demoCategory',
-        actions: <DarwinNotificationAction>[
-          DarwinNotificationAction.text(
-            'id_3', 'Action 3',
-            buttonTitle: 'Action 3',
-            options: <DarwinNotificationActionOption>{
-              DarwinNotificationActionOption.foreground,
-            },
-          ),
-        ],
-        options: <DarwinNotificationCategoryOption>{
-          DarwinNotificationCategoryOption.hiddenPreviewShowTitle,
-        },
-      )
-    ],
-);
-
-Future<void> initializePlatformSpecifics() async {
-  await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(channel);
-  var initializationSettingsAndroid = const AndroidInitializationSettings('@drawable/ic_stat_name');
-  final initializationSettings = InitializationSettings(
-      android: initializationSettingsAndroid,
-      iOS: initializationSettingsDarwin,
-  );
-  await flutterLocalNotificationsPlugin.initialize(
-    initializationSettings,
-    onDidReceiveNotificationResponse: notificationLogic.onDidReceiveNotificationResponse,
-  );
-}
-
-
-handleNotifications() async {
-  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
-  FirebaseMessaging.instance.getInitialMessage()
-      .then((value) => value != null ? firebaseMessagingBackgroundHandler : false);
-  return;
-}
-
-
-Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  if (Firebase.apps.isEmpty) await Firebase.initializeApp();
-  // log('Handling a background message ${message.messageId}');
-  RemoteNotification? notification = message.notification;
-  AndroidNotification? android = message.notification?.android;
-  AppleNotification? apple = message.notification?.apple;
-  if (notification != null) {
-
-  }
-}
 
 extension LayoutModeExtension on LayoutMode {
   String get text {

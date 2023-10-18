@@ -1,21 +1,19 @@
 import 'package:zego_uikit_prebuilt_live_audio_room/zego_uikit_prebuilt_live_audio_room.dart';
-import 'package:popcorn/packages/bottom_sheet/bottom_sheets/material_bottom_sheet.dart';
-import 'package:popcorn/features/rooms/widgets/room_info_fit.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:popcorn/features/rooms/models/room_model.dart';
 import '../../../core/widgets_helper/gift_widget.dart';
 import '../../../core/widgets_helper/widgets.dart';
 import '../../../core/usecases/constants.dart';
+import 'package:popcorn/generated/assets.dart';
 import '../../../core/usecases/enums.dart';
 import 'package:flutter/material.dart';
-import '../../../core/util/img.dart';
-import 'package:get/get.dart';
 import 'dart:async';
 
 
 
 
 class LiveRoom extends StatefulWidget {
-  final RoomModel room;
+  final RoomAuthorModel room;
   const LiveRoom({Key? key, required this.room}) : super(key: key);
 
   @override
@@ -28,23 +26,23 @@ class _LiveRoomState extends State<LiveRoom> {
 
   @override
   void initState() {
-    super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       subscriptions = ZegoUIKit().getInRoomCommandReceivedStream().listen(onInRoomCommandReceived);
     });
+    super.initState();
   }
 
   @override
   void dispose() {
-    super.dispose();
     subscriptions.cancel();
+    super.dispose();
   }
 
   void onInRoomCommandReceived(ZegoInRoomCommandReceivedData commandData) {
     final user = userState.user!;
     debugPrint("onInRoomCommandReceived, fromUser:${commandData.fromUser}, command:${commandData.command}");
     // You can display different animations according to gift-type
-    if (commandData.fromUser.id != '${user.uniqueKey}') {
+    if (commandData.fromUser.id != '${user.uid.hashCode}') {
       GiftWidget.show(context: context,
         url: 'https://github.com/yyued/SVGA-Samples/blob/master/angel.svga?raw=true',
       );
@@ -68,23 +66,21 @@ class _LiveRoomState extends State<LiveRoom> {
   Widget build(BuildContext context) {
     final user = userState.user!;
     return ZegoUIKitPrebuiltLiveAudioRoom(
-      // room: widget.room,
-      appSign: '8b6e715d1fe543076ef397e55fe0aef6b3e766947027786d3c2043368171a307',
-      userID: '${user.uniqueKey}',
+      appSign: appSign,
+      userID: user.uid,
       userName: user.displayName,
-      roomID: '${widget.room.idRoom}',
+      roomID: '${widget.room.id.hashCode}',
       appID: 698306505,
-      // config: null,
       config: ZegoUIKitPrebuiltLiveAudioRoomConfig.audience()
         ..takeSeatIndexWhenJoining = -1
-        ..background = background()
+        ..background = background(widget.room)
         ..hostSeatIndexes = getLockSeatIndex(LayoutMode.hostCenter)
         ..layoutConfig = getLayoutConfig(LayoutMode.defaultLayout)
         ..seatConfig = getSeatConfig(LayoutMode.defaultLayout)
         ..audioEffectConfig = ZegoAudioEffectConfig()
         ..seatConfig = ZegoLiveAudioRoomSeatConfig(
           avatarBuilder: (context, size, zegoUser, map) {
-            if (zegoUser?.id == '${user.uniqueKey}') {
+            if (zegoUser?.id == user.uid) {
               return chatCircleAvatar(user, 25);
             }
             return chatCircleAvatar(null, 25);
@@ -92,26 +88,91 @@ class _LiveRoomState extends State<LiveRoom> {
         )
         ..onLeaveConfirmation = (BuildContext context) async {
           return await utilsLogic.onLeaveConfirmation(context);
-        }..seatConfig.avatarBuilder = (BuildContext context, Size size, ZegoUIKitUser? zegUser, Map extraInfo) {
-          return (zegUser != null && user.photoProfile != null) ? Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: NetworkImage(
-                    '${user.photoProfile}'
+        }..seatConfig.avatarBuilder = (context, size, zegUser, Map extraInfo) {
+          if (zegUser?.id != null) {
+            return FittedBox(
+              fit: BoxFit.scaleDown,
+              child: ClipOval(
+                child: CachedNetworkImage(
+                  imageUrl: '$pathUserProfile%2F${zegUser?.id}%2F${zegUser?.id}.jpg?alt=media',
+                  fit: BoxFit.cover,
+                  height: 96,
+                  width: 96,
+                  placeholder: (context, url) => Image.asset(
+                    Assets.imagesLogo3,
+                    fit: BoxFit.cover,
+                    height: 96,
+                    width: 96,
+                  ),
+                  errorWidget: (context, url, error) => Image.asset(
+                    Assets.imagesLogo3,
+                    fit: BoxFit.cover,
+                    height: 96,
+                    width: 96,
+                  ),
                 ),
               ),
-            ),
-          ) : Container(
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage(
-                    IMG.logo3,
-                ),
+            );
+          } else {
+            return ClipOval(
+              child: Image.asset(
+                Assets.imagesLogo3,
+                fit: BoxFit.cover,
+                width: 96,
+                height: 96,
               ),
-            ),
+            );
+          }
+          /*
+          return FutureBuilder<UserModel>(
+            future: userLogic.getUserById('${zegUser?.id}'),
+            builder: (context, snapshot) {
+              switch(snapshot.connectionState) {
+                case ConnectionState.none:
+                case ConnectionState.waiting:
+                  return ClipOval(
+                    child: Image.asset(
+                      Assets.imagesLogo3,
+                      fit: BoxFit.cover,
+                      width: 96,
+                      height: 96,
+                    ),
+                  );
+                default:
+                  if (snapshot.hasData) {
+                    final photoProfile = snapshot.data?.photoProfile;
+                    return FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: ClipOval(
+                        // borderRadius: BorderRadius.circular(1),
+                        child: (photoProfile != null) ?
+                        Image.network(
+                          photoProfile,
+                          fit: BoxFit.cover,
+                          width: 96,
+                          height: 96,
+                        ) : Image.asset(
+                          Assets.imagesLogo3,
+                          fit: BoxFit.cover,
+                          width: 96,
+                          height: 96,
+                        ),
+                      ),
+                    );
+                  } else {
+                    return ClipOval(
+                      child: Image.asset(
+                        Assets.imagesLogo3,
+                        fit: BoxFit.cover,
+                        width: 96,
+                        height: 96,
+                      ),
+                    );
+                  }
+              }
+            },
           );
+          */
         }
     );
   }
@@ -207,78 +268,44 @@ class _LiveRoomState extends State<LiveRoom> {
 
   Widget avatarBuilder(BuildContext context, Size size, ZegoUIKitUser? user, Map extraInfo) {
     final photoProfile = userState.user?.photoProfile;
-    return CircleAvatar(
-        maxRadius: size.width,
-        backgroundImage: (photoProfile != null) ?
-        Image.network(photoProfile).image :
-        Image.asset(IMG.defaultUser).image,
+    return ClipOval(
+      child: (photoProfile != null) ?
+      CachedNetworkImage(
+        imageUrl: photoProfile,
+        fit: BoxFit.cover,
+        progressIndicatorBuilder: (context, url, downloadProgress) =>
+            Padding(
+              padding: const EdgeInsets.all(2),
+              child: CircularProgressIndicator(value: downloadProgress.progress),
+            ),
+        errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+      ) : Image.asset(
+        Assets.imagesDefaultUser,
+        fit: BoxFit.contain,
+      ),
     );
   }
 
-  Widget? background() {
-    return Container(
-      height: Get.height,
-      width: Get.width,
-      decoration: BoxDecoration(
-        image: DecorationImage(
+  Widget? background(RoomAuthorModel model) {
+    if (model.backgroundImage != null) {
+      return CachedNetworkImage(
+        imageUrl: '${model.backgroundImage}',
+        fit: BoxFit.fill,
+        placeholder: (context, url) => Image.asset(
+          Assets.imagesBg1,
           fit: BoxFit.fill,
-          image: Image.asset("assets/images/bg1.webp").image,
         ),
-      ),
-    );
-    return Stack(
-      children: [
-        Container(
-          height: Get.height,
-          width: Get.width,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.fill,
-              image: Image.asset("assets/images/bg1.webp").image,
-            ),
-          ),
+        errorWidget: (context, url, error) => Image.asset(
+          Assets.imagesBg1,
+          fit: BoxFit.fill,
         ),
-        Positioned(
-          top: 30,
-          left: 10,
-          child: GestureDetector(
-            onTap: () async {
-              print('=============');
-              final action = await showMaterialModalBottomSheet(
-                builder: (context) => RoomInfoFit(room: widget.room),
-                backgroundColor: Colors.transparent,
-                context: context,
-                expand: true,
-              );
-            },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.room.name,
-                  overflow: TextOverflow.ellipsis,
-                  style: context.textTheme.bodyText2?.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                ),
-                Text(
-                  "ID: ${widget.room.idRoom}",
-                  overflow: TextOverflow.ellipsis,
-                  style: context.textTheme.bodyText2?.copyWith(
-                    fontWeight: FontWeight.normal,
-                    color: Colors.white,
-                    fontSize: 12,
-                    height: 1,
-                  ),
-                ),
-              ],
-            ),
-          )
-        ),
-      ],
-    );
+      );
+    } else {
+      return Image.asset(
+        Assets.imagesBg1,
+        fit: BoxFit.fill,
+      );
+    }
   }
 }
 

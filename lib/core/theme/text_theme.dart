@@ -6,7 +6,7 @@ import 'package:popcorn/core/theme/generateMaterialColor.dart';
 class CustomTextTheme {
 
   static const _textColorLight = Color(0xff0f0e17);
-  static final _textColorDark = headlineColor;
+  static const _textColorDark = Color(0xffffffff);
 
   static TextTheme get textThemeLight {
     return _textTheme(textColor: _textColorLight);

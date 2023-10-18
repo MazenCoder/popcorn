@@ -10,8 +10,8 @@ import 'package:get/get.dart';
 
 
 
-class CardShimmerRoom extends StatelessWidget {
-  const CardShimmerRoom({Key? key}) : super(key: key);
+class CardRoomShimmer extends StatelessWidget {
+  const CardRoomShimmer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

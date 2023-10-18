@@ -71,13 +71,13 @@ class ForgotPass extends StatelessWidget {
                               FocusManager.instance.primaryFocus?.unfocus();
                               if (_formEmail.currentState?.validate()??false) {
                                 final email = _emailController.text.trim();
-                                await authLogic.resetPassword(context, email).then((value) {
-                                  utilsLogic.showSnack(type: SnackBarType.success,
-                                    title: 'email_address'.tr,
-                                    message: 'check_email'.tr
-                                  );
-                                  _emailController.clear();
-                                });
+                                // await authLogic.resetPassword(context, email).then((value) {
+                                //   utilsLogic.showSnack(type: SnackBarType.success,
+                                //     title: 'email_address'.tr,
+                                //     message: 'check_email'.tr
+                                //   );
+                                //   _emailController.clear();
+                                // });
                               }
                             },
                           ),

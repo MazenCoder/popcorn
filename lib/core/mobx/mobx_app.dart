@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import '../../features/posts/widgets/card_comment.dart';
 import 'package:image_picker/image_picker.dart';
 import '../models/comment_reply_model.dart';
@@ -7,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../models/address_model.dart';
 import 'package:mobx/mobx.dart';
 import 'package:get/get.dart';
+import 'dart:io';
 
 part 'mobx_app.g.dart';
 
@@ -203,12 +202,6 @@ abstract class MobxAppBase with Store {
   void setIdVisibility(int val) => idVisibility = val;
 
   @observable
-  File? file;
-
-  @action
-  void setFile(File? val) => file = val;
-
-  @observable
   bool gridLarge = false;
 
   @action
@@ -218,8 +211,22 @@ abstract class MobxAppBase with Store {
   double level = 0.0;
 
   @action
-  void setLevel(double val) {
-    level = val;
+  void setLevel(double value) {
+    level = value;
+  }
+
+  @observable
+  File? file;
+
+  @action
+  void setFile(File? value) => file = value;
+
+  @observable
+  File? fileBackground;
+
+  @action
+  void setFileBackground(File? value) {
+    fileBackground = value;
   }
 
 }

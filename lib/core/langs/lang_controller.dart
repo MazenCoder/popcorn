@@ -48,5 +48,11 @@ class LangController extends GetxController {
     Get.updateLocale(locale);
   }
 
+  bool isRtl() {
+    String locale = box.get(Keys.locale, defaultValue: 'en');
+    final lung = Get.locale ?? Locale(locale);
+    return lung.languageCode == 'ar';
+  }
+
 
 }

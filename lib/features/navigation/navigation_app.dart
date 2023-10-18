@@ -1,6 +1,4 @@
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:popcorn/core/usecases/firebase_notifications.dart';
-import 'package:popcorn/core/widgets_helper/loading_dialog.dart';
 import '../../core/widgets_helper/responsive_safe_area.dart';
 import '../../core/theme/generateMaterialColor.dart';
 import 'package:after_layout/after_layout.dart';

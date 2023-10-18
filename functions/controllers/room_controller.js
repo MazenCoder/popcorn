@@ -1,50 +1,50 @@
-const userService = require('../service/user_service');
+const roomService = require('../service/room_service');
 
 
 
-module.exports.getUser = async (req, res) => {
+module.exports.getRoom = async (req, res) => {
   let response = {};
   try {
-    const { uid } = req.params;
-    const userForm = await userService.getUser(uid);
-    if (userForm) {
+    const { id } = req.params;
+    const roomForm = await roomService.getRoom(id);
+    if (roomForm) {
       response.status = 200;
       response.message = 'Successful';
-      response.user = userForm;
+      response.room = roomForm;
     } else {
       response.status = 401;
-      response.message = `Cannot find any user with ID ${uid}`;
-      response.user = {};
+      response.message = `Cannot find any room with ID ${id}`;
+      response.room = {};
     }
   } catch (error) {
     console.error(error.message);
     response.status = 400;
     response.message = error.message;
-    response.user = {};
+    response.room = {};
   }
   return res.status(response.status).json(response);
 }
 
 
-module.exports.check = async (req, res) => {
+module.exports.getRoomByAuthorId = async (req, res) => {
   let response = {};
   try {
     const { uid } = req.params;
-    const checkUser = await userService.checkExists(uid);
-    if (checkUser) {
+    const roomForm = await roomService.getRoomByAuthorId(uid);
+    if (roomForm) {
       response.status = 200;
       response.message = 'Successful';
-      response.user = checkUser;
+      response.room = roomForm;
     } else {
       response.status = 401;
-      response.message = `Cannot find any user with ID ${uid}`;
-      response.user = checkUser;
+      response.message = `Cannot find any room with UID ${uid}`;
+      response.room = {};
     }
   } catch (error) {
     console.error(error.message);
     response.status = 400;
     response.message = error.message;
-    response.user = {};
+    response.room = {};
   }
   return res.status(response.status).json(response);
 }
@@ -53,15 +53,15 @@ module.exports.check = async (req, res) => {
 module.exports.create = async (req, res) => {
   let response = {};
   try {
-    const userForm = await userService.createUser(req.body);
+    const roomForm = await roomService.createRoom(req.body);
     response.status = 200;
     response.message = 'Successful';
-    response.user = userForm;
+    response.room = roomForm;
   } catch (error) {
     console.log(error.message);
     response.status = 401;
     response.message = error.message;
-    response.user = {};
+    response.room = {};
   }
   return res.status(response.status).json(response);
 }
@@ -70,41 +70,16 @@ module.exports.create = async (req, res) => {
 module.exports.update = async (req, res) => {
   let response = {};
   try {
-    const { uid } = req.params;
-    const userForm = await userService.updateUser(uid, req.body);
-    if (userForm) {
+    const { id } = req.params;
+    const roomForm = await roomService.updateRoom(id, req.body);
+    if (roomForm) {
       response.status = 200;
       response.message = 'Successful';
-      response.user = userForm;
+      response.room = roomForm;
     } else {
       response.status = 401;
-      response.message = `Cannot find any user with ID ${uid}`;
-      response.user = {};
-    }
-
-  } catch (error) {
-    console.log(error.message);
-    response.status = 400;
-    response.message = error.message;
-    response.user = {};
-  }
-  return res.status(response.status).json(response);
-}
-
-
-module.exports.checkCreate = async (req, res) => {
-  let response = {};
-  try {
-    const { uid } = req.params;
-    const userForm = await userService.checkCreate(uid, req.body);
-    if (userForm) {
-      response.status = 200;
-      response.message = 'Successful';
-      response.user = userForm;
-    } else {
-      response.status = 401;
-      response.message = `Cannot find any user with ID ${uid}`;
-      response.user = {};
+      response.message = `Cannot find any room with ID ${id}`;
+      response.room = {};
     }
 
   } catch (error) {
@@ -120,16 +95,16 @@ module.exports.checkCreate = async (req, res) => {
 module.exports.updateToken = async (req, res) => {
   let response = {};
   try {
-    const { uid, token, lastSeen } = req.body;
-    const userForm = await userService.updateToken(uid, token, lastSeen);
-    if (userForm) {
+    const { id, token } = req.body;
+    const roomForm = await roomService.updateToken(id, token);
+    if (roomForm) {
       response.status = 200;
       response.message = 'Successful';
-      response.user = userForm;
+      response.room = roomForm;
     } else {
       response.status = 401;
-      response.message = `Cannot find any user with ID ${uid}`;
-      response.user = {};
+      response.message = `Cannot find any room with ID ${id}`;
+      response.room = {};
     }
 
   } catch (error) {
@@ -145,25 +120,49 @@ module.exports.updateToken = async (req, res) => {
 module.exports.search = async (req, res) => {
   let response = {};
   try {
-    const { limit = 10, isBanned, uid, name } = req.body;
+    const { uid, name, status, page = 1, limit = 1 } = req.body;
     const formatName = name.replace(/[-[\]{}()*+?.,\\/^$|#\s]/g, "\\$&");
-    const query = { _id: {$ne: uid}, displayName: { $regex: formatName, $options: "i" }, isBanned: isBanned };
-    console.log('query: ', query);
-    const usersForm = await userService.search(query, limit);
-    if (usersForm) {
+    const query = { name: { $regex: formatName, $options: "i" }, status: parseInt(status)};
+    const roomsForm = await roomService.search(query, page, limit);
+    if (roomsForm) {
       response.status = 200;
       response.message = 'Successful';
-      response.users = usersForm;
+      response.rooms = roomsForm;
     } else {
       response.status = 401;
       response.message = 'No results found';
-      response.users = [];
+      response.rooms = [];
     }
   } catch (error) {
     console.log(error.message);
     response.status = 401;
     response.message = error.message;
-    response.users = [];
+    response.rooms = [];
+  }
+  return res.status(response.status).json(response);
+}
+
+
+module.exports.fetch = async (req, res) => {
+  let response = {};
+  try {
+    const { uid, status, page = 1, limit = 10 } = req.body;
+    const query = { author: {$ne: uid}, status: parseInt(status)};
+    const roomsForm = await roomService.fetch(query, page, limit);
+    if (roomsForm) {
+      response.status = 200;
+      response.message = 'Successful';
+      response.rooms = roomsForm;
+    } else {
+      response.status = 401;
+      response.message = 'No results found';
+      response.rooms = [];
+    }
+  } catch (error) {
+    console.log(error.message);
+    response.status = 401;
+    response.message = error.message;
+    response.rooms = [];
   }
   return res.status(response.status).json(response);
 }

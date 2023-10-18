@@ -125,7 +125,8 @@ final ApiClient apiClient = ApiClient.instance;
 
 const String baseUrl = 'https://us-central1-popcorn-e7b6a.cloudfunctions.net';
 // const String baseUrlApi = '$baseUrl/api';
-const String baseUrlApi = 'http://192.168.1.100:3008/api';
+const String baseUrlApi = 'https://api-krxv4tsoga-uc.a.run.app/api';
+// const String baseUrlApi = 'http://192.168.1.100:3008/api';
 const String termsOfServiceUrl = 'https://www.app-popcorn.com';
 const String appSign = '8b6e715d1fe543076ef397e55fe0aef6b3e766947027786d3c2043368171a307';
 const String pathUserProfile = 'https://firebasestorage.googleapis.com/v0/b/popcorn-e7b6a.appspot.com/o/users';

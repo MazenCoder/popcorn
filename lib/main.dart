@@ -17,19 +17,16 @@ import 'core/controllers/user/user_logic.dart';
 import 'core/controllers/chat/chat_logic.dart';
 import 'core/controllers/auth/auth_logic.dart';
 import 'core/theme/generateMaterialColor.dart';
-import 'features/rooms/logic/room_logic.dart';
 import 'package:flutter/foundation.dart';
 import 'core/langs/lang_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'core/injection/injection.dart';
 import 'package:flutter/services.dart';
-import 'core/usecases/functions.dart';
 import 'core/usecases/constants.dart';
 import 'core/langs/translation.dart';
 import 'core/theme/app_theme.dart';
-import 'core/usecases/boxes.dart';
-import 'package:get/get.dart';
 import 'firebase_options.dart';
+import 'package:get/get.dart';
 
 
 
@@ -77,7 +74,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
-    final box = Boxes.settings();
+    // final box = Boxes.settings();
     final locale = languageLogic.getLocale();
     return Container(
       color: primaryColor,
@@ -91,13 +88,6 @@ class MyApp extends StatelessWidget {
         },
         child: GetMaterialApp(
           translations: Translation(),
-          // initialRoute: auth.currentUser == null ? '/FbGoogleSignInPage' : '/SplashApp',
-          // getPages: [
-          //   GetPage(name: '/FbGoogleSignInPage', page: () => const FbGoogleSignInPage()),
-          //   GetPage(name: '/SplashApp', page: () => SplashApp(
-          //     home: const NavigationApp(),
-          //   )),
-          // ],
           title: 'Popcorn',
           locale: locale,
           fallbackLocale: locale,

@@ -1401,10 +1401,10 @@ packages:
     dependency: "direct main"
     description:
       name: mobx
-      sha256: "0afcf88b3ee9d6819890bf16c11a727fc8c62cf736fda8e5d3b9b4eace4e62ea"
+      sha256: "42ae7277ec5c36fa5ce02aa14551065babce3c38a35947330144ff47bc775c75"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.2.1"
   mobx_codegen:
     dependency: "direct dev"
     description:
@@ -2239,34 +2239,34 @@ packages:
     dependency: transitive
     description:
       name: zego_plugin_adapter
-      sha256: d4a56acdce0f187f006d790409f620ecbabb6a2f9001e04157884e6ca84a2a3e
+      sha256: "092f49f9218a7576df5aef77fbbc7030de659170a78cae711a6124e558261de5"
       url: "https://pub.dev"
     source: hosted
-    version: "2.7.5"
+    version: "2.8.0"
   zego_uikit:
     dependency: "direct main"
     description:
       name: zego_uikit
-      sha256: "76b1ba99907691065e26b55b03951d8e0c23c4690d0ed8622a1b9c7ef6214ebe"
+      sha256: bd8b88348b46070d59a29d663736a09b6dacc26fa4e51041f8494de4d59c71c8
       url: "https://pub.dev"
     source: hosted
-    version: "2.13.4"
+    version: "2.14.0"
   zego_uikit_prebuilt_live_audio_room:
     dependency: "direct main"
     description:
       name: zego_uikit_prebuilt_live_audio_room
-      sha256: "8c8f5d3128f5009cad68c1dc73faada9320480eed209f7d6579fec47b2a132d1"
+      sha256: ec4a092eb74a747dff3d13004ed24662c76967a9d91e6d10435301fffaea7dd1
       url: "https://pub.dev"
     source: hosted
-    version: "2.12.0"
+    version: "2.13.0"
   zego_uikit_signaling_plugin:
     dependency: transitive
     description:
       name: zego_uikit_signaling_plugin
-      sha256: "519da208f0c41b7d3ed00d767598770e3834a2ce7db3adc892cedd63ad9e1945"
+      sha256: "0ffbcfc21e6c2e00b9fdfff1ece6bce9bb782628cf9a04c5fd03229acfecf9a1"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.6"
+    version: "2.6.0"
   zego_zim:
     dependency: transitive
     description:

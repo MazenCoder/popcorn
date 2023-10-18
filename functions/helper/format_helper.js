@@ -13,11 +13,11 @@ module.exports.formatHelper = (data) => {
 
 module.exports.selectUser = '_id email displayName genderId token ' +
     'lastSeen photoProfile role dateBirth isVerified isBanned hideIntro ' +
-    'coins level xp blocks skills friends targetFriends createdAt updatedAt';
+    'blocks friends createdAt updatedAt';
 
 module.exports.selectUserReport = '_id email displayName genderId token ' +
     'lastSeen photoProfile role dateBirth isVerified isBanned hideIntro ' +
-    'coins level xp blocks skills targetFriends createdAt updatedAt';
+    'blocks createdAt updatedAt';
 
 module.exports.selectConfigs = 'verifyEmail costComment costLike gainXp';
 

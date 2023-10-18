@@ -60,6 +60,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.json());
 //! Routers
-app.use('/v1/user', require('./routers/user_router'));
+app.use('/api/v1/user', require('./routers/user_router'));
+app.use('/api/v1/room', require('./routers/room_router'));
 
 exports.api = onRequest(app);

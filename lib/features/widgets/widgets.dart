@@ -3,6 +3,8 @@ import 'package:popcorn/generated/assets.dart';
 import '../../core/models/user_model.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/usecases/constants.dart';
+
 
 
 Widget getUsername({UserModel? user, TextStyle? style}) {
@@ -49,5 +51,48 @@ double valueLinear(double val) {
     return (3 / 4);
   } else {
     return 1;
+  }
+}
+
+
+
+Widget getProfileImageByUID({
+  String? uid,
+  required double height,
+  required double width,
+}) {
+  if (uid != null) {
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: ClipOval(
+        child: CachedNetworkImage(
+          imageUrl: '$pathUserProfile%2F$uid%2F$uid.jpg?alt=media',
+          fit: BoxFit.cover,
+          height: height,
+          width: width,
+          placeholder: (context, url) => Image.asset(
+            Assets.imagesLogo3,
+            fit: BoxFit.cover,
+            height: height,
+            width: width,
+          ),
+          errorWidget: (context, url, error) => Image.asset(
+            Assets.imagesLogo3,
+            fit: BoxFit.cover,
+            height: height,
+            width: width,
+          ),
+        ),
+      ),
+    );
+  } else {
+    return ClipOval(
+      child: Image.asset(
+        Assets.imagesLogo3,
+        fit: BoxFit.cover,
+        width: 96,
+        height: 96,
+      ),
+    );
   }
 }

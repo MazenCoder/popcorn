@@ -37,8 +37,8 @@ class RoomState {
     lastDocument = null;
     // engine = createAgoraRtcEngine();
     isMooreAvailable = false.obs;
-    loading = false.obs;
-    loadingMyRoom = false;
+    loading = true.obs;
+    loadingMyRoom = true;
     enableSpeakerphone = false.obs;
     openMicrophone = false.obs;
     playEffect = false.obs;

@@ -17,8 +17,8 @@ class FeedsPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final RefreshController _refreshController = RefreshController(initialRefresh: false);
-    final FocusNode _inputNode = FocusNode();
+    final RefreshController refreshController = RefreshController(initialRefresh: false);
+    final FocusNode inputNode = FocusNode();
     return Scaffold(
       // backgroundColor: backgroundColor,
       body: Column(
@@ -53,7 +53,7 @@ class FeedsPage extends HookWidget {
                       padding: const EdgeInsets.only(top: 0, left: 8),
                       child: TextField(
                         autofocus: false,
-                        focusNode: _inputNode,
+                        focusNode: inputNode,
                         onTap: () async {
                           final model = await showSearch(
                             context: context, delegate: SearchPost(),
@@ -111,17 +111,17 @@ class FeedsPage extends HookWidget {
                 );
               } else {
                 return SmartRefresher(
-                  controller: _refreshController,
+                  controller: refreshController,
                   header: const WaterDropHeader(),
                   enablePullDown: true,
                   enablePullUp: true,
                   onRefresh: () async {
                     await postController.setupPost(listener: true);
-                    return _refreshController.refreshCompleted();
+                    return refreshController.refreshCompleted();
                   },
                   onLoading: () async {
                     await postController.getMorePost(context: context, listener: true);
-                    return _refreshController.loadComplete();
+                    return refreshController.loadComplete();
                   },
                   footer: CustomFooter(
                     builder: (context, mode) {

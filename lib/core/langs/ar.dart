@@ -306,4 +306,6 @@ const Map<String, String> ar = {
   "please_select_room_photo": "الرجاء اختيار صورة الغرفة",
   "choose_background_image": "اختر صورة الخلفية",
   "remove_background_image": "إزالة صورة الخلفية",
+  "take_the_mic": "خذ المايك",
+  "leave_the_mic": "اترك المايك",
 };

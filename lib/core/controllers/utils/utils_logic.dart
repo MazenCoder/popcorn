@@ -2,12 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:zego_uikit_prebuilt_live_audio_room/zego_uikit_prebuilt_live_audio_room.dart';
 import '../../../features/admin/models/topic_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../features/rooms/models/room_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:popcorn/core/models/gift_model.dart';
 import 'package:image_cropper/image_cropper.dart';
+import '../../../features/rooms/widgets/live_room.dart';
+import '../../../main.dart';
 import '../../widgets_helper/loading_dialog.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:package_info/package_info.dart';
@@ -786,7 +789,7 @@ class UtilsLogic extends GetxController {
     }
   }
 
-  Future<bool> onLeaveConfirmation(BuildContext context) async {
+  Future<bool> onLeaveConfirmation(BuildContext context, RoomAuthorModel room) async {
     return await showGeneralDialog<bool>(
       context: context,
       barrierColor: Colors.black12.withOpacity(0.6), // Background color
@@ -799,6 +802,39 @@ class UtilsLogic extends GetxController {
           children: <Widget>[
             GestureDetector(
               onTap: () => Navigator.of(context).pop(false),
+              /*
+              onTap: () {
+                if (ZegoUIKitPrebuiltLiveAudioRoomMiniOverlayMachine().isMinimizing) {
+                  /// When the application is minimized (in a minimized state),
+                  /// Disable button clicks to prevent multiple ZegoUIKitPrebuiltLiveAudioRoom components from being created.
+                  return Navigator.of(context).pop(false);
+                }
+
+                // Navigator.of(context).pop(false);
+                // ZegoUIKitPrebuiltLiveAudioRoomMiniOverlayMachine().changeState(
+                //   LiveAudioRoomMiniOverlayPageState.minimizing,
+                //   prebuiltAudioRoomData: ZegoUIKitPrebuiltLiveAudioRoomData.days,
+                // );
+
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pop(false);
+
+                // ZegoUIKitPrebuiltLiveAudioRoomMiniOverlayPage(
+                //   contextQuery: () {
+                //     return navigatorKey.currentState!.context;
+                //   },
+                // );
+                /// The code you used to initialize or navigate ZegoUIKitPrebuiltLiveAudioRoom previously
+                // Navigator.pushNamed(
+                //   context,
+                //   ZegoUIKitPrebuiltLiveAudioRoom(
+                //
+                //   ),
+                // );
+              },
+              */
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,

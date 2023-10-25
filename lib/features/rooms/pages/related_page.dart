@@ -1,6 +1,6 @@
+import 'package:popcorn/features/rooms/widgets/card_room_shimmer.dart';
 import 'package:popcorn/features/rooms/pages/following_page.dart';
 import 'package:popcorn/features/rooms/pages/recently_page.dart';
-import 'package:popcorn/features/rooms/widgets/card_room_shimmer.dart';
 import 'package:popcorn/features/rooms/widgets/create_room.dart';
 import 'package:popcorn/features/rooms/logic/room_logic.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';

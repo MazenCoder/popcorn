@@ -13,7 +13,7 @@ import '../../../core/usecases/constants.dart';
 
 
 class GiftAndFrameFit extends StatefulWidget {
-  const GiftAndFrameFit({Key? key}) : super(key: key);
+  const GiftAndFrameFit({super.key});
 
   @override
   State<GiftAndFrameFit> createState() => _GiftAndFrameFitState();
@@ -45,6 +45,11 @@ class _GiftAndFrameFitState extends State<GiftAndFrameFit> {
                         IMG.giftChatSvg,
                         width: 25, height: 25,
                       ),
+                      Expanded(child: Container()),
+                      IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () => Navigator.pop(context),
+                      )
                     ],
                   ),
                 ),

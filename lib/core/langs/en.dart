@@ -306,4 +306,6 @@ const Map<String, String> en = {
   "please_select_room_photo": "Please select a room photo",
   "choose_background_image": "Choose a background image",
   "remove_background_image": "Remove background image",
+  "take_the_mic": "Take the mic",
+  "leave_the_mic": "Leave the mic",
 };

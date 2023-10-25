@@ -1,3 +1,4 @@
+import 'package:zego_uikit_prebuilt_live_audio_room/zego_uikit_prebuilt_live_audio_room.dart';
 import 'package:popcorn/core/controllers/network/network_logic.dart';
 import 'core/controllers/notification/notification_controller.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -30,7 +31,7 @@ import 'package:get/get.dart';
 
 
 
-
+final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -87,6 +88,7 @@ class MyApp extends StatelessWidget {
           }
         },
         child: GetMaterialApp(
+          navigatorKey: navigatorKey,
           translations: Translation(),
           title: 'Popcorn',
           locale: locale,
@@ -106,6 +108,19 @@ class MyApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             DefaultCupertinoLocalizations.delegate,
           ],
+          builder: (BuildContext context, Widget? child) {
+            return Stack(
+              children: [
+                child!,
+                ///  Step 3/3: Insert ZegoUIKitPrebuiltLiveAudioRoomMiniOverlayPage into Overlay, and return the context of NavigatorState in contextQuery.
+                ZegoUIKitPrebuiltLiveAudioRoomMiniOverlayPage(
+                  contextQuery: () {
+                    return navigatorKey.currentState!.context;
+                  },
+                ),
+              ],
+            );
+          }
         ),
       ),
     );

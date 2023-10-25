@@ -18,8 +18,8 @@ import 'dart:developer';
 class DisplayCardProfile extends StatefulWidget {
   final UserModel user;
   const DisplayCardProfile({
-    Key? key, required this.user,
-  }) : super(key: key);
+    super.key, required this.user,
+  });
 
   @override
   State<DisplayCardProfile> createState() => _DisplayCardProfileState();
@@ -86,7 +86,7 @@ class _DisplayCardProfileState extends State<DisplayCardProfile> {
                     children: [
                       if (widget.user.uid != userState.user?.uid)
                         IconButton(
-                          icon: Icon(MdiIcons.alertOutline),
+                          icon: const Icon(MdiIcons.alertOutline),
                           onPressed: () async {
                             bool? isBlocked = await showMaterialModalBottomSheet(
                               expand: true, context: context,
@@ -103,7 +103,7 @@ class _DisplayCardProfileState extends State<DisplayCardProfile> {
                       if (widget.user.uid != userState.user?.uid)
                         IconButton(
                           // icon: Icon(MdiIcons.at),
-                          icon: Icon(MdiIcons.chatProcessingOutline),
+                          icon: const Icon(MdiIcons.chatProcessingOutline),
                           onPressed: () => Get.to(() => ChatScreenPage(
                             currentUser: userState.user!,
                             receiverUser: widget.user,

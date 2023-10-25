@@ -1,12 +1,22 @@
 import 'package:zego_uikit_prebuilt_live_audio_room/zego_uikit_prebuilt_live_audio_room.dart';
+import '../../../packages/bottom_sheet/bottom_sheets/material_bottom_sheet.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:popcorn/features/rooms/models/room_model.dart';
+import '../../account/widgets/display_card_profile.dart';
+import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
+import '../../../core/theme/generateMaterialColor.dart';
 import '../../../core/widgets_helper/gift_widget.dart';
 import '../../../core/widgets_helper/widgets.dart';
-import '../../../core/usecases/constants.dart';
 import 'package:popcorn/generated/assets.dart';
+import '../../../core/usecases/constants.dart';
+import '../../../core/models/user_model.dart';
 import '../../../core/usecases/enums.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../widgets/widgets.dart';
+import 'gift_and_frame_fit.dart';
+import 'package:get/get.dart';
+import 'dart:developer';
 import 'dart:async';
 
 
@@ -14,7 +24,7 @@ import 'dart:async';
 
 class LiveRoom extends StatefulWidget {
   final RoomAuthorModel room;
-  const LiveRoom({Key? key, required this.room}) : super(key: key);
+  const LiveRoom({super.key, required this.room});
 
   @override
   State<LiveRoom> createState() => _LiveRoomState();
@@ -22,8 +32,11 @@ class LiveRoom extends StatefulWidget {
 
 class _LiveRoomState extends State<LiveRoom> {
 
+  final ZegoLiveAudioRoomController _zegoController = ZegoLiveAudioRoomController();
   late StreamSubscription<ZegoInRoomCommandReceivedData> subscriptions;
+  final isSeatClosedNotifier = ValueNotifier<bool>(false);
 
+  final isRequestingNotifier = ValueNotifier<bool>(false);
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -65,12 +78,13 @@ class _LiveRoomState extends State<LiveRoom> {
   @override
   Widget build(BuildContext context) {
     final user = userState.user!;
+    bool isRtl = languageLogic.isRtl();
     return ZegoUIKitPrebuiltLiveAudioRoom(
-      appSign: appSign,
+      appID: appID, appSign: appSign,
       userID: user.uid,
       userName: user.displayName,
       roomID: '${widget.room.id.hashCode}',
-      appID: 698306505,
+      controller: _zegoController,
       config: ZegoUIKitPrebuiltLiveAudioRoomConfig.audience()
         ..takeSeatIndexWhenJoining = -1
         ..background = background(widget.room)
@@ -85,99 +99,208 @@ class _LiveRoomState extends State<LiveRoom> {
             }
             return chatCircleAvatar(null, 25);
           },
-        )
-        ..onLeaveConfirmation = (BuildContext context) async {
-          return await utilsLogic.onLeaveConfirmation(context);
+        )..onLeaveConfirmation = (BuildContext context) async {
+          return await utilsLogic.onLeaveConfirmation(context, widget.room);
         }..seatConfig.avatarBuilder = (context, size, zegUser, Map extraInfo) {
-          if (zegUser?.id != null) {
-            return FittedBox(
-              fit: BoxFit.scaleDown,
-              child: ClipOval(
-                child: CachedNetworkImage(
-                  imageUrl: '$pathUserProfile%2F${zegUser?.id}%2F${zegUser?.id}.jpg?alt=media',
-                  fit: BoxFit.cover,
-                  height: 96,
-                  width: 96,
-                  placeholder: (context, url) => Image.asset(
-                    Assets.imagesLogo3,
-                    fit: BoxFit.cover,
-                    height: 96,
-                    width: 96,
+          return getProfileImageByUID(
+            uid: zegUser?.id,
+            height: 96,
+            width: 96,
+          );
+        }..onSeatClicked = (int index, ZegoUIKitUser? user) {
+          showOnSeatClicked(context, index, user);
+        }..inRoomMessageConfig = ZegoInRoomMessageConfig(
+          height: Get.height - 340,
+          width: Get.width,
+          // backgroundColor: Colors.transparent,
+          showAvatar: true,
+          messageTextStyle: const TextStyle(
+            color: Colors.white,
+          ),
+          itemBuilder: (context, message, map) {
+            return Directionality(
+              textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
+              child: InkWell(
+                onTap: () {
+                  WoltModalSheet.show(
+                    context: context,
+                    pageListBuilder: (modalSheetContext) {
+                      final textTheme = Theme.of(context).textTheme;
+                      return [
+                        userInfoSheet(
+                          modalSheetContext, textTheme,
+                          message.user.id,
+                        ),
+                      ];
+                    },
+                  );
+                },
+                child: ListTile(
+                  title: Text(
+                    message.user.name,
+                    style: context.textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  errorWidget: (context, url, error) => Image.asset(
-                    Assets.imagesLogo3,
-                    fit: BoxFit.cover,
-                    height: 96,
-                    width: 96,
+                  subtitle: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.black.withOpacity(0.3),
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                        child: Text(
+                          message.message,
+                          style: context.textTheme.bodyMedium?.copyWith(
+                            height: 1.2,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
+                  visualDensity: VisualDensity.compact,
+                  dense: true,
+                  // isThreeLine: true,
+                  leading: getProfileImageByUID(
+                    uid: message.user.id,
+                    height: 44,
+                    width: 44,
+                  )
                 ),
               ),
             );
-          } else {
-            return ClipOval(
-              child: Image.asset(
-                Assets.imagesLogo3,
-                fit: BoxFit.cover,
-                width: 96,
-                height: 96,
-              ),
-            );
           }
-          /*
-          return FutureBuilder<UserModel>(
-            future: userLogic.getUserById('${zegUser?.id}'),
-            builder: (context, snapshot) {
-              switch(snapshot.connectionState) {
-                case ConnectionState.none:
-                case ConnectionState.waiting:
-                  return ClipOval(
-                    child: Image.asset(
-                      Assets.imagesLogo3,
-                      fit: BoxFit.cover,
-                      width: 96,
-                      height: 96,
+        )..bottomMenuBarConfig.audienceButtons = const [
+          ZegoMenuBarButtonName.showMemberListButton,
+        ]..topMenuBarConfig.buttons = [
+          ZegoMenuBarButtonName.minimizingButton,
+        ]..layoutConfig.rowConfigs = [
+          ZegoLiveAudioRoomLayoutRowConfig(count: 4, alignment: ZegoLiveAudioRoomLayoutAlignment.center),
+          ZegoLiveAudioRoomLayoutRowConfig(count: 4, alignment: ZegoLiveAudioRoomLayoutAlignment.center),
+          ZegoLiveAudioRoomLayoutRowConfig(count: 2, alignment: ZegoLiveAudioRoomLayoutAlignment.center),
+        ]..bottomMenuBarConfig.audienceExtendButtons = [
+          connectButton(),
+          IconButton(
+            icon: Image.asset(
+              Assets.imagesGift,
+              fit: BoxFit.cover,
+              height: 50,
+              width: 50,
+            ),
+            onPressed: () async {
+              /*
+              WoltModalSheet.show(
+                context: context,
+                pageListBuilder: (modalSheetContext) {
+                  final textTheme = Theme.of(context).textTheme;
+                  return [
+                    WoltModalSheetPage.withSingleChild(
+                      child: GiftAndFrameFit(),
                     ),
-                  );
-                default:
-                  if (snapshot.hasData) {
-                    final photoProfile = snapshot.data?.photoProfile;
-                    return FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: ClipOval(
-                        // borderRadius: BorderRadius.circular(1),
-                        child: (photoProfile != null) ?
-                        Image.network(
-                          photoProfile,
-                          fit: BoxFit.cover,
-                          width: 96,
-                          height: 96,
-                        ) : Image.asset(
-                          Assets.imagesLogo3,
-                          fit: BoxFit.cover,
-                          width: 96,
-                          height: 96,
-                        ),
-                      ),
-                    );
-                  } else {
-                    return ClipOval(
-                      child: Image.asset(
-                        Assets.imagesLogo3,
-                        fit: BoxFit.cover,
-                        width: 96,
-                        height: 96,
-                      ),
-                    );
-                  }
-              }
+                  ];
+                },
+              );
+              */
+              final action = await showMaterialModalBottomSheet(
+                builder: (context) => const GiftAndFrameFit(),
+                // backgroundColor: Get.theme.primaryColor,
+                context: context,
+                expand: false,
+              );
             },
-          );
-          */
-        }
+          )
+        ]
+    );
+  }
+
+  Widget connectButton() {
+    return ValueListenableBuilder<bool>(
+      valueListenable: isSeatClosedNotifier,
+      builder: (context, isSeatClosed, _) {
+        return isSeatClosed ? ValueListenableBuilder<bool>(
+          valueListenable: isRequestingNotifier,
+          builder: (context, isRequesting, _) {
+            return isRequesting
+                ? ElevatedButton(
+              onPressed: () {
+                _zegoController.cancelSeatTakingRequest().then((result) {
+                  isRequestingNotifier.value = false;
+                });
+              },
+              child: const Text('Cancel'),
+            )
+                : ElevatedButton(
+              onPressed: () {
+                _zegoController.applyToTakeSeat().then((result) {
+                  isRequestingNotifier.value = result;
+                });
+              },
+              child: const Text('Request'),
+            );
+          },
+        )
+            : Container();
+      },
+    );
+  }
+  Future<void> showOnSeatClicked(BuildContext context, int index, ZegoUIKitUser? user) async {
+    await showModalBottomSheet(
+      backgroundColor: const Color(0xff111014),
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(32.0),
+          topRight: Radius.circular(32.0),
+        ),
+      ),
+      isDismissible: true,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return AnimatedPadding(
+          padding: MediaQuery.of(context).viewInsets,
+          duration: const Duration(milliseconds: 50),
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (user?.id == userState.user?.uid)
+                  TextButton.icon(
+                    icon: const Icon(Icons.logout_outlined),
+                    label: Text('leave_the_mic'.tr),
+                    onPressed: () async {
+                      await _zegoController.leaveSeat(showDialog: false);
+                      if (context.mounted) Navigator.pop(context);
+                    },
+                  )
+                else if (user == null)
+                  TextButton.icon(
+                    icon: const Icon(Icons.mic),
+                    label: Text('take_the_mic'.tr),
+                    onPressed: () async {
+                      await _zegoController.takeSeat(index);
+                      if (context.mounted) Navigator.pop(context);
+                    },
+                  ),
+
+                TextButton(
+                  child: Text('cancel'.tr),
+                  onPressed: () => Navigator.pop(context),
+                ),
+
+              ],
+            )
+          ),
+        );
+      },
     );
   }
 
   List<int> getLockSeatIndex(LayoutMode layoutMode) {
+    // Use this to set the special seat for the host only (speakers and the audience are not allowed to sit).
     if (layoutMode == LayoutMode.hostCenter) {
       return [4];
     }
@@ -254,16 +377,96 @@ class _LiveRoomState extends State<LiveRoom> {
   ZegoLiveAudioRoomSeatConfig getSeatConfig(LayoutMode layoutMode) {
     if (layoutMode == LayoutMode.hostTopCenter) {
       return ZegoLiveAudioRoomSeatConfig(
-        backgroundBuilder: (BuildContext context, Size size,
-            ZegoUIKitUser? user, Map extraInfo) {
+        backgroundBuilder: (
+            BuildContext context,
+            Size size,
+            ZegoUIKitUser? user,
+            Map extraInfo,
+        ) {
           return Container(color: Colors.grey);
         },
-      );
+      )..backgroundBuilder = backgroundBuilder
+        ..foregroundBuilder = backgroundBuilder;
     }
 
     return ZegoLiveAudioRoomSeatConfig(
       avatarBuilder: avatarBuilder,
     );
+  }
+
+  bool isAttributeHost(Map<String, String>? userInRoomAttributes) {
+    log('userInRoomAttributes: $userInRoomAttributes');
+    return (userInRoomAttributes?[attributeKeyRole] ?? "") ==
+        ZegoLiveAudioRoomRole.host.index.toString();
+  }
+
+  Widget backgroundBuilder(
+      BuildContext context, Size size, ZegoUIKitUser? user, Map extraInfo) {
+    if (!isAttributeHost(user?.inRoomAttributes.value)) {
+      return Container();
+    }
+
+    return Positioned(
+      top: -8,
+      left: 0,
+      child: Container(
+        width: size.width,
+        height: size.height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: Image.asset(
+              Assets.imagesLogo,
+            ).image
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget foregroundBuilder(
+      BuildContext context, Size size, ZegoUIKitUser? user, Map extraInfo) {
+    var userName = user?.name.isEmpty ?? true
+        ? Container()
+        : Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Text(
+        user?.name ?? "",
+        overflow: TextOverflow.ellipsis,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          backgroundColor: Colors.black.withOpacity(0.1),
+          fontSize: 9,
+          fontWeight: FontWeight.w600,
+          decoration: TextDecoration.none,
+          color: Colors.white,
+        ),
+      ),
+    );
+
+    if (!isAttributeHost(user?.inRoomAttributes.value)) {
+      return userName;
+    }
+
+    var hostIconSize = Size(size.width / 3, size.height / 3);
+    var hostIcon = Positioned(
+      bottom: 3,
+      right: 0,
+      child: Container(
+        width: hostIconSize.width,
+        height: hostIconSize.height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: Image.asset(
+                Assets.imagesLogo,
+              ).image
+          ),
+        ),
+      ),
+    );
+
+    return Stack(children: [userName, hostIcon]);
   }
 
   Widget avatarBuilder(BuildContext context, Size size, ZegoUIKitUser? user, Map extraInfo) {
@@ -307,6 +510,47 @@ class _LiveRoomState extends State<LiveRoom> {
       );
     }
   }
+
+  userInfoSheet(modalSheetContext, textTheme, String uid) {
+    return WoltModalSheetPage.withSingleChild(
+      backgroundColor: primaryColor,
+      child: FutureBuilder<UserModel>(
+        future: userLogic.getUserById(uid),
+        builder: (context, snapshot) {
+          switch(snapshot.connectionState) {
+            case ConnectionState.none:
+            case ConnectionState.waiting:
+              return const Padding(
+                padding: EdgeInsets.all(40),
+                child: Center(child: CupertinoActivityIndicator()),
+              );
+            default:
+              final user = snapshot.data;
+              if (user != null) {
+                return SizedBox(
+                  height: 300,
+                  width: Get.width,
+                  child: DisplayCardProfile(user: user),
+                );
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      chatCircleAvatar(user, 40),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
+                ); 
+              } else {
+                return const SizedBox();
+              }
+          }
+        },
+      )
+    );
+  }
 }
 
 
@@ -328,44 +572,6 @@ class _LiveRoomState extends State<LiveRoom> {
 
 
 
-
-
-
-
-
-
-
-// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-// import 'package:agora_rtc_engine/rtc_remote_view.dart' as RtcRemoteView;
-// import 'package:agora_rtc_engine/rtc_local_view.dart' as RtcLocalView;
-// import 'package:cached_network_image/cached_network_image.dart';
-// import 'package:popcorn/core/notifiers/model_notifier.dart';
-// import 'package:popcorn/core/usecases/preference_utils.dart';
-// import 'package:permission_handler/permission_handler.dart';
-// import 'package:popcorn/core/ui/responsive_safe_area.dart';
-// import 'package:ms_material_color/ms_material_color.dart';
-// import 'package:ripple_animation/ripple_animation.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:popcorn/core/models/user_model.dart';
-// import 'package:popcorn/core/models/room_model.dart';
-// import 'package:agora_rtc_engine/rtc_engine.dart';
-// import 'package:flutter_mobx/flutter_mobx.dart';
-// import 'package:google_fonts/google_fonts.dart';
-// import 'package:popcorn/core/util/keys.dart';
-// import 'package:popcorn/core/util/img.dart';
-// import 'package:agora_rtm/agora_rtm.dart';
-// import 'package:flutter/cupertino.dart';
-// import 'package:http/http.dart' as http;
-// import 'package:provider/provider.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_svg/svg.dart';
-// import '../../constants.dart';
-// import 'package:get/get.dart';
-// import 'card_mic.dart';
-// import 'dart:convert';
-// import 'dart:async';
-//
-//
 // bool _volumeHigh = true;
 // RtcEngine _engine;
 //
